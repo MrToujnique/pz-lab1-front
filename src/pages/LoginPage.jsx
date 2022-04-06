@@ -1,29 +1,10 @@
 import { useRef, useState, useEffect, useContext } from "react";
-
 import axios from "axios";
 import { Button, FormControl, Text } from "@chakra-ui/react";
 import { FormLabel } from "@chakra-ui/react";
-import { LOGIN_URL } from "./../constants/constants";
+import {authEndpoints} from "../shared/config/endpoints";
 import { Heading, Box, Stack, InputGroup, Flex } from "@chakra-ui/react";
-import { useResolvedPath, useMatch, Link } from "react-router-dom";
-
-function CustomLink({ children, to, ...props }) {
-  let resolved = useResolvedPath(to);
-  let match = useMatch({ path: resolved.pathname, end: true });
-
-  return (
-    <div>
-      <Link
-        style={{ textDecoration: match ? "underline" : "none" }}
-        to={to}
-        {...props}
-      >
-        {children}
-      </Link>
-      {match && " (active)"}
-    </div>
-  );
-}
+import CustomLink from "../components/CustomLink/CustomLink";
 
 const LoginPage = () => {
   const emailRef = useRef();
@@ -45,7 +26,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post(LOGIN_URL, { email, password })
+      .post(authEndpoints.login, { email, password })
       .then((res) => {
         if (res.data.email !== null) {
           localStorage.setItem("user", JSON.stringify(res.data));
