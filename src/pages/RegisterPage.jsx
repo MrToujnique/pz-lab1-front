@@ -13,7 +13,7 @@ import {
   Stack,
   InputLeftElement,
 } from "@chakra-ui/react";
-import { REGISTER_URL, LOGIN_URL } from "./../constants/constants";
+import { authEndpoints} from "../shared/config/endpoints";
 import { Text } from "@chakra-ui/react";
 
 const RegisterPage = () => {
@@ -39,7 +39,7 @@ const RegisterPage = () => {
       setErrMsg("Hasła się nie zgadzają.");
     } else {
       axios
-        .post(REGISTER_URL, {
+        .post(authEndpoints.register, {
           email,
           password,
         })
@@ -49,7 +49,7 @@ const RegisterPage = () => {
             setSuccess(false);
           } else {
             axios
-              .post(LOGIN_URL, { email, password })
+              .post(authEndpoints.login, { email, password })
               .then((res) => {
                 localStorage.setItem("user", JSON.stringify(res.data));
               })
