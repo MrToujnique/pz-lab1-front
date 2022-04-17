@@ -13,7 +13,7 @@ import {
   Stack,
   InputLeftElement,
 } from "@chakra-ui/react";
-import { authEndpoints} from "../shared/config/endpoints";
+import { authEndpoints } from "../shared/config/endpoints";
 import { Text } from "@chakra-ui/react";
 
 const RegisterPage = () => {
@@ -29,6 +29,7 @@ const RegisterPage = () => {
     if (localStorage.getItem("user") !== null) {
       setSuccess(true);
     }
+    setErrMsg("");
   }, []);
 
   useEffect(() => {}, [success, errMsg]);
@@ -44,25 +45,24 @@ const RegisterPage = () => {
           password,
         })
         .then((res) => {
-          if (res.data === false) {
-            setErrMsg("Takie konto już istnieje.");
-            setSuccess(false);
-          } else {
-            axios
-              .post(authEndpoints.login, { email, password })
-              .then((res) => {
-                localStorage.setItem("user", JSON.stringify(res.data));
-              })
-              .catch((err) => {
-                setErrMsg(err);
-              });
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            setSuccess(true);
-          }
+          axios
+            .post(authEndpoints.login, { email, password })
+            .then((res) => {
+              localStorage.setItem("user", JSON.stringify(res.data));
+            })
+            .catch((err) => {
+              setErrMsg(err);
+            });
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          setErrMsg("");
+          setSuccess(true);
         })
-        .catch((err) => setErrMsg(err));
+        .catch((err) => {
+          setErrMsg("Takie konto już istnieje.");
+          setSuccess(false);
+        });
     }
   };
 
@@ -148,6 +148,8 @@ const RegisterPage = () => {
                       id="password"
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
+                      title="Hasło musi zawierać minimum 8 znaków."
+                      pattern="^.{8,}"
                       required
                     />
                   </InputGroup>
