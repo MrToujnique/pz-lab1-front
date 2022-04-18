@@ -136,7 +136,7 @@ const LoginPage = () => {
                   Zaloguj się
                 </Button>
                 <Flex flexDirection="column" alignItems="flex-end">
-                  <CustomLink to="/przypomnienieHasla" textAlign="right">
+                  <CustomLink to="/przypomnienie-hasla" textAlign="right">
                     Nie pamiętasz hasła?
                   </CustomLink>
                 </Flex>

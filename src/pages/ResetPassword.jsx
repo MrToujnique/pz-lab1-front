@@ -35,9 +35,11 @@ const ResetPassword = () => {
       axios
         .put(`${authEndpoints.updatePassword}${token}`, newPassword, config)
         .then((res) => {
-          setErrMsg("Pomyślnie zmieniono hasło, status HTTP:", res);
+          setErrMsg("Pomyślnie zmieniono hasło.");
           localStorage.removeItem("user");
-          navigate("/");
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
         })
         .catch((err) =>
           setErrMsg(`Niepoprawny token, kod błędu: ${err.response.status}`)

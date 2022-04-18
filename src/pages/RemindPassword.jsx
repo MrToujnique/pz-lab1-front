@@ -10,14 +10,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import axios from "axios";
-import {
-  MAILER_URL,
-  MAILER_SUBJECT,
-  MAILER_TEXT,
-  MAILER_ROLES,
-} from "../constants/constants";
 
+//TODO, ponieważ ten serwis nie działa jeszcze na backendzie
 const RemindPassword = () => {
   const [email, setEmail] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -25,18 +19,18 @@ const RemindPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios
-      .post(MAILER_URL, {
-        email,
-        MAILER_SUBJECT,
-        MAILER_TEXT,
-        isHtmlContent: true,
-        updatePassword: MAILER_ROLES.updatePassword,
-      })
-      .then((res) => {
-        console.log("sukces");
-      })
-      .catch((err) => setErrMsg(err));
+    // axios
+    //   .post(MAILER_URL, {
+    //     email,
+    //     MAILER_SUBJECT,
+    //     MAILER_TEXT,
+    //     isHtmlContent: true,
+    //     updatePassword: MAILER_ROLES.updatePassword,
+    //   })
+    //   .then((res) => {
+    //     console.log("sukces");
+    //   })
+    //   .catch((err) => setErrMsg(err));
   };
 
   return (
