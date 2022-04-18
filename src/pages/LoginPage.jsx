@@ -2,13 +2,12 @@ import { useRef, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Button, FormControl, Text } from "@chakra-ui/react";
 import { FormLabel } from "@chakra-ui/react";
-import {authEndpoints} from "../shared/config/endpoints";
+import { authEndpoints } from "../shared/config/endpoints";
 import { Heading, Box, Stack, InputGroup, Flex } from "@chakra-ui/react";
 import CustomLink from "../components/CustomLink/CustomLink";
 
 const LoginPage = () => {
   const emailRef = useRef();
-  const errRef = useRef();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,19 +27,14 @@ const LoginPage = () => {
     axios
       .post(authEndpoints.login, { email, password })
       .then((res) => {
-        if (res.data.email !== null) {
-          localStorage.setItem("user", JSON.stringify(res.data));
-          setEmail("");
-          setPassword("");
-          setErrMsg("");
-          setSuccess(true);
-        } else {
-          setSuccess(false);
-          setErrMsg("Nieprawidłowe dane logowania!");
-        }
+        localStorage.setItem("user", JSON.stringify(res.data));
+        setEmail("");
+        setPassword("");
+        setErrMsg("");
+        setSuccess(true);
       })
       .catch((err) => {
-        setErrMsg(err);
+        setErrMsg("Nieprawidłowe dane logowania.");
         setSuccess(false);
       });
   };
@@ -102,7 +96,7 @@ const LoginPage = () => {
                         height: "32px",
                         borderRadius: "6px",
                       }}
-                      type="text"
+                      type="email"
                       id="emailname"
                       ref={emailRef}
                       autoComplete="off"
@@ -140,16 +134,22 @@ const LoginPage = () => {
                 >
                   Zaloguj się
                 </Button>
+                <Flex flexDirection="column" alignItems="flex-end">
+                  <CustomLink to="/przypomnienie-hasla" textAlign="right">
+                    Nie pamiętasz hasła?
+                  </CustomLink>
+                </Flex>
               </Stack>
             </form>
           </Box>
-          <p>
+          <br />
+          <Text>
             Nie posiadasz konta?
             <br />
             <span className="line">
               <CustomLink to="/rejestracja">Zarejestruj się</CustomLink>
             </span>
-          </p>
+          </Text>
         </Flex>
       )}
     </>
