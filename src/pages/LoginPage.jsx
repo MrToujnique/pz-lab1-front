@@ -8,7 +8,6 @@ import CustomLink from "../components/CustomLink/CustomLink";
 
 const LoginPage = () => {
   const emailRef = useRef();
-  const errRef = useRef();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
