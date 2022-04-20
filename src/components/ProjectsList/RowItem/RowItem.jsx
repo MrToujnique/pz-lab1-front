@@ -13,8 +13,8 @@ export const RowItem = (props) => {
 
   return (
     <Tr>
-        <Td>{lp}</Td>
-        <Td>{id}</Td>
+        <Td isNumeric>{lp}</Td>
+        <Td isNumeric>{id}</Td>
         <Td>{name}</Td>
         <Td>{description}</Td>
         <Td>{createDate}</Td>

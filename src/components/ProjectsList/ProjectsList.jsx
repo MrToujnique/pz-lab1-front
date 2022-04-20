@@ -13,7 +13,7 @@ import { RowItem } from './RowItem/RowItem'
 export const ProjectsList = (props) => {
 
   return (
-    <TableContainer mx='20px'>
+    <TableContainer mx='20px' mt='30px'>
       <Table size='sm'>
         <Thead>
           <Tr>
