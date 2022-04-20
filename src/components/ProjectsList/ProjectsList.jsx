@@ -27,12 +27,39 @@ export const ProjectsList = (props) => {
           </Tr>
         </Thead>
         <Tbody>
-          <RowItem/>
-          <RowItem/>
-          <RowItem/>
-          <RowItem/>
-          <RowItem/>
-          <RowItem/>
+          <RowItem
+            lp={1}
+            id={1}
+            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
+            description={'Cos tam cos tam'}
+            createDate={'12 Maj 2021'}
+            thesisDefence={'03 Marzec 2022'}
+          />
+          <RowItem
+            lp={1}
+            id={1}
+            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
+            description={'Cos tam cos tam'}
+            createDate={'12 Maj 2021'}
+            thesisDefence={'03 Marzec 2022'}
+          />
+          <RowItem
+            lp={1}
+            id={1}
+            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
+            description={'Cos tam cos tam'}
+            createDate={'12 Maj 2021'}
+            thesisDefence={'03 Marzec 2022'}
+          />
+          <RowItem
+            lp={1}
+            id={1}
+            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
+            description={'Cos tam cos tam'}
+            createDate={'12 Maj 2021'}
+            thesisDefence={'03 Marzec 2022'}
+          />
+
         </Tbody>
       </Table>
     </TableContainer>
