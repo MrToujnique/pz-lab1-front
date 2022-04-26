@@ -6,13 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { FormLabel, Heading, InputGroup } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import {
-  FormControl,
-  Box,
-  Flex,
-  Stack,
-  InputLeftElement,
-} from "@chakra-ui/react";
+import { FormControl, Box, Flex, Stack } from "@chakra-ui/react";
 import { authEndpoints } from "../shared/config/endpoints";
 import { Text } from "@chakra-ui/react";
 
