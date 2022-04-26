@@ -1,18 +1,21 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
+import { TopBar } from "../components/TopBar/TopBar";
+import { ProjectsList } from "../components/ProjectsList/ProjectsList";
 
 export const ProjectList = () => {
   return (
     <>
       <Box>
         <Flex
-          position="absolute"
+          direction="column"
           width="100%"
-          height="96px"
           left="0px"
           top="0px"
-          background="F9F9F9"
-        ></Flex>
+        >
+          <TopBar/>
+          <ProjectsList/>
+        </Flex>
       </Box>
     </>
   );
