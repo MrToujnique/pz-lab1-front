@@ -1,5 +1,6 @@
 import React from 'react'
-import {Tr, Td} from '@chakra-ui/react';
+import {Tr, Td, IconButton} from '@chakra-ui/react';
+import { InfoOutlineIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
 export const RowItem = (props) => {
     const {
@@ -19,7 +20,25 @@ export const RowItem = (props) => {
         <Td>{description}</Td>
         <Td>{createDate}</Td>
         <Td>{thesisDefence}</Td>
-        <Td>25.4</Td>
+        <Td>
+          <IconButton        
+        colorScheme='green'
+        aria-label='Wyświetl'
+        size='sm'
+        mr='5px'
+        icon={<InfoOutlineIcon/>}/>
+          <IconButton        
+        colorScheme='yellow'
+        size='sm'
+        mr='5px'
+        aria-label='Edytuj'
+        icon={<EditIcon/>}/>
+          <IconButton        
+        colorScheme='red'
+        size='sm'
+        aria-label='Usuń'
+        icon={<DeleteIcon/>}/>
+        </Td>
     </Tr>
   )
 }
