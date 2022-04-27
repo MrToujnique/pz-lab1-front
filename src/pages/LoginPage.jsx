@@ -4,7 +4,7 @@ import { Button, FormControl, Text } from "@chakra-ui/react";
 import { FormLabel } from "@chakra-ui/react";
 import { authEndpoints } from "../shared/config/endpoints";
 import { Heading, Box, Stack, InputGroup, Flex } from "@chakra-ui/react";
-import CustomLink from "../components/CustomLink/CustomLink";
+import CustomLink from "../components/CustomLink";
 
 const LoginPage = () => {
   const emailRef = useRef();
