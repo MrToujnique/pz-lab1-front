@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Table,
   Thead,
@@ -7,8 +7,9 @@ import {
   Th,
   Td,
   TableContainer,
-} from '@chakra-ui/react'
-import { RowItem } from './RowItem/RowItem'
+} from '@chakra-ui/react';
+import { RowItem } from './RowItem/RowItem';
+import { projectEndpoints } from '../../shared/config/endpoints';
 
 export const ProjectsList = (props) => {
 
