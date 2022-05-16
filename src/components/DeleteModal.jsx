@@ -15,14 +15,22 @@ import {
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 const DeleteModal = (props) => {
-  const { activity, title, firstActivity, secondActivity, projectId } = props;
+  const { title, projectId } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>{activity}</Button>
+      <IconButton
+        colorScheme="red"
+        size="sm"
+        aria-label="Usuń"
+        icon={<DeleteIcon />}
+        onClick={onOpen}
+      />
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -35,10 +43,10 @@ const DeleteModal = (props) => {
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
-              {firstActivity}
+              Zatwierdź
             </Button>
             <Button variant="ghost" onClick={onClose}>
-              {secondActivity}
+              Anuluj
             </Button>
           </ModalFooter>
         </ModalContent>
