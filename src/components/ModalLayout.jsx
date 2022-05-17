@@ -19,16 +19,16 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect } from "react";
+import { IconButton } from "@chakra-ui/react";
+import { AddIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 const ModalLayout = (props) => {
   const {
-    activity,
     title,
-    firstActivity,
-    secondActivity,
     projectId,
     projectName,
     description,
+    isAddingModal,
     isEditingModal,
   } = props;
 
@@ -41,8 +41,26 @@ const ModalLayout = (props) => {
 
   return (
     <>
-      <Button onClick={onOpen}>{activity}</Button>
-
+      {isAddingModal && (
+        <IconButton
+          colorScheme="green"
+          size="sm"
+          mr="5px"
+          aria-label="Dodaj"
+          icon={<AddIcon />}
+          onClick={onOpen}
+        />
+      )}
+      {isEditingModal && (
+        <IconButton
+          colorScheme="yellow"
+          size="sm"
+          mr="5px"
+          aria-label="Edytuj"
+          icon={<EditIcon />}
+          onClick={onOpen}
+        />
+      )}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -97,9 +115,9 @@ const ModalLayout = (props) => {
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
-              {firstActivity}
+              Zatwierdź
             </Button>
-            <Button onClick={onClose}>{secondActivity}</Button>
+            <Button onClick={onClose}>Anuluj</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

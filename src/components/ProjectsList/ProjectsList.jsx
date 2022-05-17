@@ -12,10 +12,9 @@ import { RowItem } from './RowItem/RowItem';
 import { projectEndpoints } from '../../shared/config/endpoints';
 
 export const ProjectsList = (props) => {
-
   return (
-    <TableContainer mx='20px' mt='30px'>
-      <Table size='sm'>
+    <TableContainer mx="20px" mt="30px">
+      <Table size="sm">
         <Thead>
           <Tr>
             <Th>L.p.</Th>
@@ -31,38 +30,45 @@ export const ProjectsList = (props) => {
           <RowItem
             lp={1}
             id={1}
-            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
-            description={'Cos tam cos tam'}
-            createDate={'12 Maj 2021'}
-            thesisDefence={'03 Marzec 2022'}
+            name={
+              "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
+            }
+            description={"Cos tam cos tam"}
+            createDate={"12 Maj 2021"}
+            thesisDefence={"03 Marzec 2022"}
           />
           <RowItem
             lp={1}
             id={1}
-            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
-            description={'Cos tam cos tam'}
-            createDate={'12 Maj 2021'}
-            thesisDefence={'03 Marzec 2022'}
+            name={
+              "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
+            }
+            description={"Cos tam cos tam"}
+            createDate={"12 Maj 2021"}
+            thesisDefence={"03 Marzec 2022"}
           />
           <RowItem
             lp={1}
             id={1}
-            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
-            description={'Cos tam cos tam'}
-            createDate={'12 Maj 2021'}
-            thesisDefence={'03 Marzec 2022'}
+            name={
+              "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
+            }
+            description={"Cos tam cos tam"}
+            createDate={"12 Maj 2021"}
+            thesisDefence={"03 Marzec 2022"}
           />
           <RowItem
             lp={1}
             id={1}
-            name={'Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko'}
-            description={'Cos tam cos tam'}
-            createDate={'12 Maj 2021'}
-            thesisDefence={'03 Marzec 2022'}
+            name={
+              "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
+            }
+            description={"Cos tam cos tam"}
+            createDate={"12 Maj 2021"}
+            thesisDefence={"03 Marzec 2022"}
           />
-
         </Tbody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};
