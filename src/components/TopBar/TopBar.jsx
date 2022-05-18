@@ -4,6 +4,15 @@ import React from 'react'
 import { SearchBar } from '../SearchBar/SearchBar'
 
 export const TopBar = () => {
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+  };
+
   return (
     <Flex
     direction="row"
@@ -20,6 +29,7 @@ export const TopBar = () => {
       <IconButton
         colorScheme='blue'
         aria-label='Wyloguj'
+        onClick={handleLogout}
         icon={<CloseIcon/>}/>
     </Flex>
   )
