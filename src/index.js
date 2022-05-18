@@ -7,7 +7,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import projectListReducer from "./store/reducers/projectsList";
+import projectListReducer, {
+  createProjectReducer,
+} from "./store/reducers/projectsList";
 
 const composeEnhancers =
   process.env.REACT_APP_DEVELOPMENT === "development"
@@ -16,6 +18,7 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   projectList: projectListReducer,
+  createProject: createProjectReducer,
 });
 
 const store = createStore(

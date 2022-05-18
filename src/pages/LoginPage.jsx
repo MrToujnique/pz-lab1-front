@@ -15,7 +15,7 @@ const LoginPage = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("user") !== null) {
+    if (localStorage.getItem("email") !== null && localStorage.getItem("token") !==null) {
       setSuccess(true);
     }
   }, []);
@@ -30,7 +30,6 @@ const LoginPage = () => {
         localStorage.setItem("token",res.data.jwToken);
         localStorage.setItem("email",res.data.email);
         localStorage.setItem("role",res.data.role);
-        
         setEmail("");
         setPassword("");
         setErrMsg("");
@@ -44,7 +43,6 @@ const LoginPage = () => {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("role");
