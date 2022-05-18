@@ -4,6 +4,7 @@ import * as actionTypes from "./actionTypes";
 
 export const createProject = (project) => async (dispatch) => {
   dispatch({ type: actionTypes.CREATE_PROJECT_REQUEST });
+  console.log("Project: ", project);
   try {
     const { data } = await axios.post(projectEndpoints.addProject, project);
     dispatch({
@@ -62,6 +63,7 @@ export const updateProjectName = (project) => async (dispatch) => {
 export const updateProjectDes = (project) => async (dispatch) => {
   dispatch({ type: actionTypes.UPDATE_PROJECT_DES_REQUEST, payload: project });
   try {
+    console.log("Project: ", project);
     const { data } = await axios.put(
       projectEndpoints.updateProjectDes,
       project

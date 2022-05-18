@@ -21,6 +21,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useEffect } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { AddIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { createProject } from "./../store/actions/modalLayout";
+import { useNavigate } from "react-router-dom";
 
 const ModalLayout = (props) => {
   const {
@@ -32,6 +35,12 @@ const ModalLayout = (props) => {
     isEditingModal,
   } = props;
 
+  let navigate = useNavigate();
+
+  const createProjectSelector = useSelector((state) => state.createProject);
+  const { loading, success, error, project } = createProjectSelector;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [projectNameState, setProjectNameState] = useState("");
   const [descriptionState, setDescriptionState] = useState("");
@@ -45,6 +54,23 @@ const ModalLayout = (props) => {
       setDescriptionState(description);
     }
   }, []);
+
+  const createProjectHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createProject({
+        name: projectNameState,
+        description: descriptionState,
+        dateofDelivery: dateState,
+        access: "CLOSE",
+        status: "CONTINUES",
+        projectOwnerEmail: user.email,
+        tasksIds: [],
+        studentsEmails: [],
+      })
+    );
+    navigate(`/`);
+  };
 
   return (
     <>
@@ -121,9 +147,16 @@ const ModalLayout = (props) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Zatwierdź
-            </Button>
+            {isAddingModal && (
+              <Button colorScheme="blue" mr={3} onClick={createProjectHandler}>
+                Zatwierdź
+              </Button>
+            )}
+            {isEditingModal && (
+              <Button colorScheme="blue" mr={3}>
+                Zatwierdź
+              </Button>
+            )}
             <Button onClick={onClose}>Anuluj</Button>
           </ModalFooter>
         </ModalContent>
