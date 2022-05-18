@@ -2,7 +2,7 @@ import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
-import { ProjectList } from "./pages/ProjectList";
+import  ProjectList  from "./pages/ProjectList";
 import ResetPassword from "./pages/ResetPassword";
 import RemindPassword from "./pages/RemindPassword";
 
