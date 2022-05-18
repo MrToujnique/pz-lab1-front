@@ -29,11 +29,6 @@ export const TopBar = () => {
       />
       <SearchBar />
       <IconButton
-        colorScheme='green'
-        aria-label='Dodaj nowy projekt'
-        icon={<AddIcon/>}/>
-      <SearchBar/>
-      <IconButton
         colorScheme='blue'
         aria-label='Wyloguj'
         onClick={handleLogout}
