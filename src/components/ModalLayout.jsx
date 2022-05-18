@@ -33,11 +33,18 @@ const ModalLayout = (props) => {
   } = props;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [projectNameState, setProjectNameState] = useState(projectName);
-  const [descriptionState, setDescriptionState] = useState(description);
+  const [projectNameState, setProjectNameState] = useState("");
+  const [descriptionState, setDescriptionState] = useState("");
   const [dateState, setDateState] = useState(new Date());
 
   const initialDate = new Date();
+
+  useEffect(() => {
+    if (isEditingModal) {
+      setProjectNameState(projectName);
+      setDescriptionState(description);
+    }
+  }, []);
 
   return (
     <>

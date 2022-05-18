@@ -18,7 +18,13 @@ export const RowItem = (props) => {
       <Td>{thesisDefence}</Td>
       <Td>
         <InfoModal />
-        <ModalLayout isEditingModal={true} title="Edytowanie projektu" />
+        <ModalLayout
+          projectId={id}
+          projectName={name}
+          description={description}
+          isEditingModal={true}
+          title="Edytowanie projektu"
+        />
         <DeleteModal title="Usuwanie projektu" />
       </Td>
     </Tr>
