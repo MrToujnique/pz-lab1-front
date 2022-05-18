@@ -27,10 +27,10 @@ const LoginPage = () => {
     axios
       .post(authEndpoints.login, { email, password })
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data));
         localStorage.setItem("token",res.data.jwToken);
         localStorage.setItem("email",res.data.email);
         localStorage.setItem("role",res.data.role);
+        
         setEmail("");
         setPassword("");
         setErrMsg("");

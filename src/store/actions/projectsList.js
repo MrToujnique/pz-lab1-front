@@ -23,12 +23,16 @@ export const fetchProjectsList = (data) => {
     return (dispatch) => {
       dispatch(fetchProjectsListStart());
       axios
-        .get(projectEndpoints.getProjectsList+'?page=0&size=10&sort=asc',{
-            params:{email:localStorage.getItem("email")}
+        .get(projectEndpoints.getProjectsList,{
+            params:{
+                page:0,
+                size:10,
+                sort:'asc'
+            }
         })
         .then((resp) => {
-  
-          dispatch(fetchProjectsListSuccess(resp.data.results));
+            console.log(resp);
+          dispatch(fetchProjectsListSuccess(resp));
         })
         .catch((err) => {
           dispatch(fetchProjectsListFail(err.response.data.message));
