@@ -4,6 +4,7 @@ import { InfoOutlineIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import ModalLayout from "../../ModalLayout";
 import DeleteModal from "./../../DeleteModal";
 import InfoModal from "../../InfoModal/InfoModal";
+import { useEffect } from "react";
 
 export const RowItem = (props) => {
   const { lp, id, name, description, createDate, thesisDefence } = props;
@@ -22,6 +23,7 @@ export const RowItem = (props) => {
           projectId={id}
           projectName={name}
           description={description}
+          thesisDefence={thesisDefence}
           isEditingModal={true}
           title="Edytowanie projektu"
         />

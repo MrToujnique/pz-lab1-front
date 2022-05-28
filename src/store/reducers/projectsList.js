@@ -19,6 +19,9 @@ import {
   DELETE_PROJECT_REQUEST,
   DELETE_PROJECT_SUCCESS,
   DELETE_PROJECT_FAIL,
+  UPDATE_PROJECT_REQUEST,
+  UPDATE_PROJECT_SUCCESS,
+  UPDATE_PROJECT_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -128,4 +131,18 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export const updateProjectReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROJECT_REQUEST:
+      return { loading: true };
+    case UPDATE_PROJECT_SUCCESS:
+      return { loading: false, success: true };
+    case UPDATE_PROJECT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export default reducer;

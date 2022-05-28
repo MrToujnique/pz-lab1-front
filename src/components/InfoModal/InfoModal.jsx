@@ -98,7 +98,7 @@ const InfoModal = (props) => {
           <ModalCloseButton />
           <ModalBody>
             <Flex direction="column">
-              {user.user.role === "ADMIN" && (
+              {user.role === "ADMIN" && (
                 <>
                   <Input
                     type="text"
@@ -130,7 +130,7 @@ const InfoModal = (props) => {
                         <Th>NAZWA</Th>
                         <Th>OPIS</Th>
                         <Th>UTWORZONE</Th>
-                        {user.user.role === "ADMIN" && <Th>EDYCJA</Th>}
+                        {user.role === "ADMIN" && <Th>EDYCJA</Th>}
                       </Tr>
                     </Thead>
                     <Tbody>

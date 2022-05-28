@@ -9,6 +9,11 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import projectListReducer, {
   createProjectReducer,
+  updateProjectReducer,
+  updateProjectStatusReducer,
+  updateProjectAccessReducer,
+  updateProjectDesReducer,
+  updateProjectNameReducer,
 } from "./store/reducers/projectsList";
 
 const composeEnhancers =
@@ -19,6 +24,11 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   projectList: projectListReducer,
   createProject: createProjectReducer,
+  updateProjectStatus: updateProjectStatusReducer,
+  updateProjectAccess: updateProjectAccessReducer,
+  updateProjectDes: updateProjectDesReducer,
+  updateProjectName: updateProjectNameReducer,
+  updateProject: updateProjectReducer,
 });
 
 const store = createStore(
