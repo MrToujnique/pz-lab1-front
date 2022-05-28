@@ -37,7 +37,7 @@ export const ProjectsList = (props) => {
         <Tbody>
           <RowItem
             lp={1}
-            id={22}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
@@ -47,7 +47,7 @@ export const ProjectsList = (props) => {
           />
           <RowItem
             lp={1}
-            id={22}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
@@ -57,7 +57,7 @@ export const ProjectsList = (props) => {
           />
           <RowItem
             lp={1}
-            id={22}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
@@ -67,7 +67,7 @@ export const ProjectsList = (props) => {
           />
           <RowItem
             lp={1}
-            id={22}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }

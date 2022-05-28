@@ -66,9 +66,12 @@ export const updateProject = (project) => async (dispatch) => {
 };
 
 export const deleteProject = (project) => async (dispatch) => {
+  console.log("Co dostaje: ", project);
   dispatch({ type: actionTypes.DELETE_PROJECT_REQUEST, payload: project });
   try {
-    const { data } = await axios.delete(projectEndpoints.deleteProject);
+    const { data } = await axios
+      .delete(projectEndpoints.deleteProject, { data: project })
+      .then((res) => console.log(res.data));
     dispatch({ type: actionTypes.DELETE_PROJECT_SUCCESS, payload: data });
   } catch (error) {
     const message =
