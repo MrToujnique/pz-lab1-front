@@ -24,10 +24,6 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   projectList: projectListReducer,
   createProject: createProjectReducer,
-  updateProjectStatus: updateProjectStatusReducer,
-  updateProjectAccess: updateProjectAccessReducer,
-  updateProjectDes: updateProjectDesReducer,
-  updateProjectName: updateProjectNameReducer,
   updateProject: updateProjectReducer,
 });
 

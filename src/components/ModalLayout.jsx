@@ -26,13 +26,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createProject } from "./../store/actions/modalLayout";
 import { useNavigate } from "react-router-dom";
 import { updatePersonEmail } from "./../store/actions/personActions";
-import {
-  updateProjectStatus,
-  updateProjectName,
-  updateProjectDes,
-  updateProjectAccess,
-  updateProject,
-} from "./../store/actions/modalLayout";
+import { updateProject } from "./../store/actions/modalLayout";
 import { projectStatus } from "../shared/config/statusTypes";
 import { projectAccess } from "../shared/config/accessTypes";
 
@@ -130,47 +124,6 @@ const ModalLayout = (props) => {
           : null,
       })
     );
-    // dispatch(
-    //   updateProjectStatus({
-    //     email: email,
-    //     projectId: projectId,
-    //     status: !statusState.localeCompare("Trwający")
-    //       ? "CONTINUES"
-    //       : !statusState.localeCompare("Zamknięty")
-    //       ? "CLOSE"
-    //       : null,
-    //   })
-    // ).then(
-    //   dispatch(
-    //     updateProjectName({
-    //       email: email,
-    //       projectId: projectId,
-    //       name: projectNameState,
-    //     })
-    //   )
-    //     .then(
-    //       dispatch(
-    //         updateProjectDes({
-    //           email: email,
-    //           projectId: projectId,
-    //           description: descriptionState,
-    //         })
-    //       )
-    //     )
-    //     .then(
-    //       dispatch(
-    //         updateProjectAccess({
-    //           email: email,
-    //           projectId: projectId,
-    //           access: !accessState.localeCompare("Otwarty")
-    //             ? "OPEN"
-    //             : !accessState.localeCompare("Zamknięty")
-    //             ? "CLOSE"
-    //             : null,
-    //         })
-    //       )
-    //     )
-    //);
   };
 
   return (
