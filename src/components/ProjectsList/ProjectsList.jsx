@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Table,
   Thead,
@@ -7,11 +7,19 @@ import {
   Th,
   Td,
   TableContainer,
-} from '@chakra-ui/react';
-import { RowItem } from './RowItem/RowItem';
-import { projectEndpoints } from '../../shared/config/endpoints';
+} from "@chakra-ui/react";
+import { RowItem } from "./RowItem/RowItem";
+import { projectEndpoints } from "../../shared/config/endpoints";
+import { useEffect } from "react";
 
 export const ProjectsList = (props) => {
+  let mayOf12 = new Date("2022-06-12");
+  const thesisDefence = mayOf12.toISOString().substring(0, 10);
+
+  useEffect(() => {
+    console.log("thesisDefence: ", thesisDefence);
+  }, []);
+
   return (
     <TableContainer mx="20px" mt="30px">
       <Table size="sm">
@@ -29,43 +37,43 @@ export const ProjectsList = (props) => {
         <Tbody>
           <RowItem
             lp={1}
-            id={1}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
             description={"Cos tam cos tam"}
             createDate={"12 Maj 2021"}
-            thesisDefence={"03 Marzec 2022"}
+            thesisDefence={thesisDefence}
           />
           <RowItem
             lp={1}
-            id={1}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
             description={"Cos tam cos tam"}
             createDate={"12 Maj 2021"}
-            thesisDefence={"03 Marzec 2022"}
+            thesisDefence={thesisDefence}
           />
           <RowItem
             lp={1}
-            id={1}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
             description={"Cos tam cos tam"}
             createDate={"12 Maj 2021"}
-            thesisDefence={"03 Marzec 2022"}
+            thesisDefence={thesisDefence}
           />
           <RowItem
             lp={1}
-            id={1}
+            id={6}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
             description={"Cos tam cos tam"}
             createDate={"12 Maj 2021"}
-            thesisDefence={"03 Marzec 2022"}
+            thesisDefence={thesisDefence}
           />
         </Tbody>
       </Table>
