@@ -23,10 +23,10 @@ import { useEffect } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { AddIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { createProject } from "./../store/actions/modalLayout";
+import { createProject } from "./../store/actions/projectActions";
 import { useNavigate } from "react-router-dom";
 import { updatePersonEmail } from "./../store/actions/personActions";
-import { updateProject } from "./../store/actions/modalLayout";
+import { updateProject } from "./../store/actions/projectActions";
 import { projectStatus } from "../shared/config/statusTypes";
 import { projectAccess } from "../shared/config/accessTypes";
 

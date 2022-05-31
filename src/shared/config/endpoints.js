@@ -35,3 +35,8 @@ export const studentEndpoints = {
   addStudent: API_URL + "/student",
   getAllStudents: API_URL + "/student/all",
 };
+
+export const taskEndpoints = {
+  getTasksByProject: API_URL + "/task/project/",
+  addTask: API_URL + "/task",
+};

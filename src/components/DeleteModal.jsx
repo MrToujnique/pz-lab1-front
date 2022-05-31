@@ -18,7 +18,7 @@ import { Text } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
-import { deleteProject } from "../store/actions/modalLayout";
+import { deleteProject } from "../store/actions/projectActions";
 
 const DeleteModal = (props) => {
   const { title, projectId } = props;

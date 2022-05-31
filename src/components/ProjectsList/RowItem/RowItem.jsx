@@ -18,7 +18,7 @@ export const RowItem = (props) => {
       <Td>{createDate}</Td>
       <Td>{thesisDefence}</Td>
       <Td>
-        <InfoModal />
+        <InfoModal projectId={id} />
         <ModalLayout
           projectId={id}
           projectName={name}

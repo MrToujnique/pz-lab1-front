@@ -5,6 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { ProjectList } from "./pages/ProjectList";
 import ResetPassword from "./pages/ResetPassword";
 import RemindPassword from "./pages/RemindPassword";
+import Items from "./store/Items";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/logowanie" element={<LoginPage />} />
         <Route path="/przypomnienie-hasla" element={<RemindPassword />} />
         <Route path="/reset-hasla/:token" element={<ResetPassword />} />
+        <Route path="/kontener" element={<Items />} />
         <Route exact path="/" element={<ProjectList />} />
       </Routes>
     </BrowserRouter>
