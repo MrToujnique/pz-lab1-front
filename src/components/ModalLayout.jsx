@@ -164,6 +164,7 @@ const ModalLayout = (props) => {
                 <Text>Nazwa:</Text>
                 <Input
                   value={projectNameState || ""}
+                  maxLength={50}
                   onChange={(e) => setProjectNameState(e.target.value)}
                 />
               </Box>
@@ -187,6 +188,7 @@ const ModalLayout = (props) => {
                 <Textarea
                   size="sm"
                   value={descriptionState || ""}
+                  maxLength={100}
                   onChange={(e) => setDescriptionState(e.target.value)}
                 />
               </Box>
