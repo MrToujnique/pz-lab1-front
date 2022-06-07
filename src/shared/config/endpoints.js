@@ -22,7 +22,7 @@ export const personEndpoints = {
   updatePersonEmail: API_URL + "/person/email",
   registerPerson: API_URL + "/person/reg",
   loginPerson: API_URL + "/person/log",
-  emailRequestDelete: API_URL + "/person/mail/delete",
+  getPersonToken: API_URL + "/person/token",
   getAdminToken: API_URL + "/person/admin",
   getAllPeople: API_URL + "/person/all",
   deletePerson: API_URL + "/person",

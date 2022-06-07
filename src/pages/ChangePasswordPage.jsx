@@ -1,11 +1,13 @@
 import React from "react";
-import { useState } from "react";
-import axios from "./../axios";
-import { personEndpoints } from "./../shared/config/endpoints";
+import AccountModifyLayout from "../components/AccountModifyLayout/AccountModifyLayout";
 import { useNavigate } from "react-router-dom";
-import AccountModifyLayout from "./../components/AccountModifyLayout/AccountModifyLayout";
+import { useState } from "react";
+import axios from "../axios";
+import { personEndpoints } from "../shared/config/endpoints";
 
-const DeleteAccountPage = () => {
+const ChangePasswordPage = () => {
+  const title = "Zmiana hasła";
+  const description = "Czy chcesz rozpocząć procedurę zmiany hasła?";
   const navigate = useNavigate();
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -14,12 +16,11 @@ const DeleteAccountPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const email = localStorage.getItem("email");
-  const title = "Usuwanie konta";
-  const description = "Czy chcesz rozpocząć procedurę usuwania konta?";
-  const submitButtonText = "Usuń konto";
+  const submitButtonText = "Zmień hasło";
 
   const sendToken = (e) => {
     e.preventDefault();
+    console.log(personEndpoints.getPersonToken);
     axios
       .get(personEndpoints.getPersonToken)
       .then((res) => {
@@ -31,29 +32,26 @@ const DeleteAccountPage = () => {
       .catch((err) => {
         console.log(err);
         setSuccess(false);
-        setErrMsg("Uzyskiwanie tokena nie powiodło się.");
+        setErrMsg("Wysyłanie maila nie powiodło się.");
         setTimeout(() => {
           setErrMsg("");
         }, 5000);
       });
   };
 
-  const handleDelete = (e) => {
+  const handlePasswordChange = (e) => {
     e.preventDefault();
-    console.log({ token: token, password: password });
     if (!password.localeCompare(confirmPassword)) {
       axios
-        .delete(personEndpoints.deletePerson, {
-          data: {
-            token: token,
-            password: password,
-          },
+        .put(personEndpoints.updatePersonPass, {
+          token: token,
+          password: password,
         })
         .then((res) => {
           console.log(res);
           setErrMsg("");
           setSuccess(true);
-          setSuccessText("Pomyślnie usunięto konto.");
+          setSuccessText("Pomyślnie zmieniono hasło.");
           localStorage.clear();
           setTimeout(() => {
             navigate("/logowanie");
@@ -62,7 +60,9 @@ const DeleteAccountPage = () => {
         .catch((err) => {
           console.log(err);
           setSuccess(false);
-          setErrMsg("Usuwanie nie powiodło się, sprawdź poprawność danych.");
+          setErrMsg(
+            "Zmiana hasła nie powiodła się, sprawdź poprawność danych."
+          );
           setTimeout(() => {
             setErrMsg("");
           }, 6000);
@@ -89,11 +89,11 @@ const DeleteAccountPage = () => {
         setPassword={setPassword}
         confirmPassword={confirmPassword}
         setConfirmPassword={setConfirmPassword}
-        handleSubmit={handleDelete}
+        handleSubmit={handlePasswordChange}
         submitButtonText={submitButtonText}
       />
     </>
   );
 };
 
-export default DeleteAccountPage;
+export default ChangePasswordPage;

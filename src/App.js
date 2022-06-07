@@ -7,8 +7,10 @@ import ResetPassword from "./pages/ResetPassword";
 import RemindPassword from "./pages/RemindPassword";
 import Items from "./store/Items";
 import NewStudentPage from "./pages/NewStudentPage";
-import PeopleList from "./components/PeopleList/PeopleList";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
+import PeopleManager from "./pages/PeopleManager";
+import StudentManager from "./pages/StudentManager";
 
 function App() {
   return (
@@ -20,8 +22,10 @@ function App() {
         <Route path="/reset-hasla/:token" element={<ResetPassword />} />
         <Route path="/kontener" element={<Items />} />
         <Route path="/nowyStudent" element={<NewStudentPage />} />
-        <Route path="/uzytkownicy" element={<PeopleList />} />
+        <Route path="/uzytkownicy" element={<PeopleManager />} />
         <Route path="/usuwanieKonta" element={<DeleteAccountPage />} />
+        <Route path="/zmianaHasla" element={<ChangePasswordPage />} />
+        <Route path="/studenci" element={<StudentManager />} />
         <Route exact path="/" element={<ProjectList />} />
       </Routes>
     </BrowserRouter>
