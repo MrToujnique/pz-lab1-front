@@ -9,7 +9,13 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import projectListReducer, {
   createProjectReducer,
+  updateProjectReducer,
+  updateProjectStatusReducer,
+  updateProjectAccessReducer,
+  updateProjectDesReducer,
+  updateProjectNameReducer,
 } from "./store/reducers/projectsList";
+import { addTaskReducer, getTasksReducer } from "./store/reducers/taskReducers";
 
 const composeEnhancers =
   process.env.REACT_APP_DEVELOPMENT === "development"
@@ -19,6 +25,9 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   projectList: projectListReducer,
   createProject: createProjectReducer,
+  updateProject: updateProjectReducer,
+  getTasks: getTasksReducer,
+  addTask: addTaskReducer,
 });
 
 const store = createStore(

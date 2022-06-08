@@ -22,7 +22,7 @@ export const personEndpoints = {
   updatePersonEmail: API_URL + "/person/email",
   registerPerson: API_URL + "/person/reg",
   loginPerson: API_URL + "/person/log",
-  confirmEmail: API_URL + "/person/",
+  getPersonToken: API_URL + "/person/token",
   getAdminToken: API_URL + "/person/admin",
   getAllPeople: API_URL + "/person/all",
   deletePerson: API_URL + "/person",
@@ -34,4 +34,9 @@ export const studentEndpoints = {
   getStudentByEmail: API_URL + "/student",
   addStudent: API_URL + "/student",
   getAllStudents: API_URL + "/student/all",
+};
+
+export const taskEndpoints = {
+  getTasksByProject: API_URL + "/task/project/",
+  addTask: API_URL + "/task",
 };
