@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
+import {Table,Thead,Tbody,Tr,Th,TableContainer} from "@chakra-ui/react";
 import { RowItem } from "./RowItem/RowItem";
 import { projectEndpoints } from "../../shared/config/endpoints";
 import { useEffect } from "react";
