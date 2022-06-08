@@ -5,6 +5,15 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import ModalLayout from "../ModalLayout";
 
 export const TopBar = () => {
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+  };
+
   return (
     <Flex
       direction="row"
@@ -20,10 +29,11 @@ export const TopBar = () => {
       />
       <SearchBar />
       <IconButton
-        colorScheme="blue"
-        aria-label="Wyloguj"
-        icon={<CloseIcon />}
-      />
+        colorScheme='blue'
+        aria-label='Wyloguj'
+        onClick={handleLogout}
+        icon={<CloseIcon/>}/>
+
     </Flex>
   );
 };

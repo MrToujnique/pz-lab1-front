@@ -22,11 +22,11 @@ const TaskItem = (props) => {
       <Td>{description}</Td>
       <Td>{dateTimeAdded}</Td>
       <Td>
-        {user.user.role === "ADMIN" && (
-          <Button className="delete" onClick={(e) => deletetask(e, taskId)}>
-            Wykonano
-          </Button>
-        )}
+        {/* {user.role === "ADMIN" && ( */}
+        <Button className="delete" onClick={(e) => deletetask(e, taskId)}>
+          Wykonano
+        </Button>
+        {/* )} */}
       </Td>
     </Tr>
   );

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
+import {Table,Thead,Tbody,Tr,Th,TableContainer} from "@chakra-ui/react";
 import { RowItem } from "./RowItem/RowItem";
 import { projectEndpoints } from "../../shared/config/endpoints";
 import { useEffect } from "react";
@@ -37,7 +29,7 @@ export const ProjectsList = (props) => {
         <Tbody>
           <RowItem
             lp={1}
-            id={6}
+            id={8}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
@@ -47,7 +39,7 @@ export const ProjectsList = (props) => {
           />
           <RowItem
             lp={1}
-            id={6}
+            id={8}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
@@ -57,7 +49,7 @@ export const ProjectsList = (props) => {
           />
           <RowItem
             lp={1}
-            id={6}
+            id={8}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
@@ -67,7 +59,7 @@ export const ProjectsList = (props) => {
           />
           <RowItem
             lp={1}
-            id={6}
+            id={8}
             name={
               "Juan Pablo Fernandez Maria FC Barcelona Janusz Sergio Vasilii Szewczenko"
             }
