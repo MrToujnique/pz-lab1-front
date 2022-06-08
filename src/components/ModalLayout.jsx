@@ -102,6 +102,8 @@ const ModalLayout = (props) => {
       })
     );
     navigate(`/`);
+    onClose();
+    window.location.reload(false);
   };
 
   const editProjectHandler = (e) => {
@@ -124,6 +126,7 @@ const ModalLayout = (props) => {
           : null,
       })
     );
+    onClose();
   };
 
   return (

@@ -25,8 +25,7 @@ export const RowItem = (props) => {
           description={description}
           thesisDefence={thesisDefence}
           isEditingModal={true}
-          title="Edytowanie projektu"
-        />
+          title="Edytowanie projektu"/>
         <DeleteModal projectId={id} title="Usuwanie projektu" />
       </Td>
     </Tr>

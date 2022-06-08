@@ -6,36 +6,32 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  Textarea,
-  Box,
-  Flex,
-  Input,
-} from "@chakra-ui/react";
+  useDisclosure} from "@chakra-ui/react";
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
-import { deleteProject } from "../store/actions/projectActions";
+import axios from "../axios";
+import { projectEndpoints } from "../shared/config/endpoints";
 
 const DeleteModal = (props) => {
   const { title, projectId } = props;
-  const dispatch = useDispatch();
   const email = localStorage.getItem("email");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const deleteProjectHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      deleteProject({
-        email: email,
-        projectId: 7,
-      })
-    );
+    axios.delete(projectEndpoints.deleteProject, {data:{
+          email: email,
+          projectId: projectId,
+        }})
+        .then((res) => {
+          onClose();
+          window.location.reload(false);
+        });
   };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <IconButton

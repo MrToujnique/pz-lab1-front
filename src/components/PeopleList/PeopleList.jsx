@@ -8,7 +8,6 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import { projectEndpoints } from "../../shared/config/endpoints";
 import { useEffect, useState } from "react";
 import Person from "./Person/Person";
 import axios from "./../../axios";
