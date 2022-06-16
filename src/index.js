@@ -15,6 +15,7 @@ import projectListReducer, {
   updateProjectDesReducer,
   updateProjectNameReducer,
 } from "./store/reducers/projectsList";
+import authReducer from "./store/reducers/auth";
 import { addTaskReducer, getTasksReducer } from "./store/reducers/taskReducers";
 
 const composeEnhancers =
@@ -23,6 +24,7 @@ const composeEnhancers =
     : compose;
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   projectList: projectListReducer,
   createProject: createProjectReducer,
   updateProject: updateProjectReducer,
