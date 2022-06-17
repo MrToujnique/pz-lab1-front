@@ -3,5 +3,5 @@ export {
 } from "./projectsList"
 
 export{
-    authCheckState
+    authCheckState, logout
 }from "./auth"

@@ -1,7 +1,7 @@
 import { Box, Flex, Table,Thead,Tbody,Tr,Th,TableContainer, Spinner } from "@chakra-ui/react";
 import { RowItem } from "../components/ProjectsList/RowItem/RowItem";
 import React, { useState, useEffect } from "react";
-import { TopBar } from "../components/TopBar/TopBar";
+import  TopBar  from "../components/TopBar/TopBar";
 import { projectEndpoints } from "../shared/config/endpoints";
 import axios from "../axios";
 

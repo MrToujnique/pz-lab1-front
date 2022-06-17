@@ -15,12 +15,9 @@ function App() {
     dispatch(actions.authCheckState())
   }, [dispatch]);
   
-
-   
   return (
     <>
       {routing}
-
     </>
   );
 }
