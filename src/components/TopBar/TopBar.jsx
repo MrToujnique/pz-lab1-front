@@ -4,7 +4,8 @@ import React from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import ModalLayout from "../ModalLayout";
 
-export const TopBar = () => {
+export const TopBar = (props) => {
+  const { isStudentMode } = props;
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -22,18 +23,23 @@ export const TopBar = () => {
       bgColor="#F9F9F9"
       padding="20px"
     >
-      <ModalLayout
-        title="Dodawanie projektu"
-        activity="test"
-        isAddingModal={true}
-      />
+      {isStudentMode ? (
+        <></>
+      ) : (
+        <ModalLayout
+          title="Dodawanie projektu"
+          activity="test"
+          isAddingModal={true}
+        />
+      )}
+
       <SearchBar />
       <IconButton
-        colorScheme='blue'
-        aria-label='Wyloguj'
+        colorScheme="blue"
+        aria-label="Wyloguj"
         onClick={handleLogout}
-        icon={<CloseIcon/>}/>
-
+        icon={<CloseIcon />}
+      />
     </Flex>
   );
 };

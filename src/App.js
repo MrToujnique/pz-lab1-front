@@ -2,7 +2,7 @@ import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
-import  ProjectList  from "./pages/ProjectList";
+import ProjectList from "./pages/ProjectList";
 import ResetPassword from "./pages/ResetPassword";
 import RemindPassword from "./pages/RemindPassword";
 import Items from "./store/Items";
@@ -11,6 +11,7 @@ import DeleteAccountPage from "./pages/DeleteAccountPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import PeopleManager from "./pages/PeopleManager";
 import StudentManager from "./pages/StudentManager";
+import AvailableProjectsPage from "./pages/AvailableProjectsPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/usuwanieKonta" element={<DeleteAccountPage />} />
         <Route path="/zmianaHasla" element={<ChangePasswordPage />} />
         <Route path="/studenci" element={<StudentManager />} />
+        <Route path="/wolneProjekty" element={<AvailableProjectsPage />} />
         <Route exact path="/" element={<ProjectList />} />
       </Routes>
     </BrowserRouter>

@@ -14,6 +14,7 @@ export const projectEndpoints = {
   updateProjectDes: API_URL + "/project/des",
   updateProjectAccess: API_URL + "/project/access",
   deleteProject: API_URL + "/project",
+  getAvailableProjects: API_URL + "/project/available",
 };
 
 export const personEndpoints = {
@@ -30,7 +31,7 @@ export const personEndpoints = {
 
 export const studentEndpoints = {
   updateStudyType: API_URL + "/student/type",
-  joinStudentToProject: API_URL + "/student/join",
+  joinStudentToProject: API_URL + "/student/join/",
   getStudentByEmail: API_URL + "/student",
   addStudent: API_URL + "/student",
   getAllStudents: API_URL + "/student/all",
