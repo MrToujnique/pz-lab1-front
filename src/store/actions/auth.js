@@ -2,15 +2,22 @@ import * as actionTypes from "./actionTypes";
 
 export const authCheckState = () => {
     return (dispatch) => {
+        dispatch(authStart(true));
         const token = localStorage.getItem("token");
         if (!token) {
             dispatch(logout());
         } else {
-          dispatch(authSuccess(token));
+          dispatch(authSuccess(token, false));
         }
     };
 };
 
+export const authStart = (checkingState) => {
+    return {
+        type: actionTypes.AUTH_START,
+        checking:checkingState,
+    };
+};
 export const logout = () => {
     localStorage.removeItem("token");
     return {
@@ -26,10 +33,11 @@ export const checkAuthTimeout = (expirationDate) => {
     };
 };
 
-export const authSuccess = (idToken, userId) => {
+export const authSuccess = (idToken, checkingState) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        idToken: idToken,
-        userId: userId,
+        token: idToken,
+        checking:checkingState,
+
     };
 };
