@@ -5,6 +5,7 @@ import ModalLayout from "../ModalLayout";
 import { connect, useDispatch} from "react-redux";
 import * as actions from "../../store/actions/index";
 
+
 const TopBar = () => {
   const dispatch = useDispatch();
   const handleLogout = async (e) => {
@@ -26,11 +27,11 @@ const TopBar = () => {
         isAddingModal={true}
       />
       <IconButton
-        colorScheme='blue'
-        aria-label='Wyloguj'
+        colorScheme="blue"
+        aria-label="Wyloguj"
         onClick={handleLogout}
-        icon={<CloseIcon/>}/>
-
+        icon={<CloseIcon />}
+      />
     </Flex>
   );
 };
