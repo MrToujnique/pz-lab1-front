@@ -13,8 +13,10 @@ import LoginPage from "../../pages/LoginPage";
 
 const routes = (isLoggedInd) =>[
     { path:'/logowanie',element: !isLoggedInd?<LoginPage />:<Navigate to="/"/>},
+    { path:'/rejestracja',element: !isLoggedInd?<RegisterPage />:<Navigate to="/"/>},
+    { path:'/logowanie',element: !isLoggedInd?<LoginPage />:<Navigate to="/"/>},
     { path:'/przypomnienie-hasla',element: !isLoggedInd?<RemindPassword />:<Navigate to="/"/>},
-    { path:'/reset-hasla/:token',element: isLoggedInd?<ProjectList />:<Navigate to="/logowanie"/>},
+    { path:'/reset-hasla/:token',element: isLoggedInd?<ResetPassword />:<Navigate to="/logowanie"/>},
     { path:'/kontener',element: isLoggedInd?<Items />:<Navigate to="/logowanie"/>},
     { path:'/nowyStudent',element: isLoggedInd?<NewStudentPage />:<Navigate to="/logowanie"/>},
     { path:'/uzytkownicy',element: isLoggedInd?<PeopleManager />:<Navigate to="/logowanie"/>},
