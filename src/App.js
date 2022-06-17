@@ -6,14 +6,8 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import * as actions from "./store/actions/index";
 
 function App() {
-  const dispatch = useDispatch();
-  const isAuth = useSelector((state)=>state.auth.token);
-  const routing = useRoutes(routes(isAuth));
 
-  useEffect(() => {
-    dispatch(actions.authCheckState())
-  }, [dispatch]);
-  
+  const routing = useRoutes(routes());
   return (
     <>
       {routing}
