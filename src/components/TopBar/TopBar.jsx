@@ -1,17 +1,15 @@
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { Flex, IconButton } from "@chakra-ui/react";
 import React from "react";
-import { SearchBar } from "../SearchBar/SearchBar";
 import ModalLayout from "../ModalLayout";
+import { connect, useDispatch} from "react-redux";
+import * as actions from "../../store/actions/index";
 
-export const TopBar = () => {
-
+const TopBar = () => {
+  const dispatch = useDispatch();
   const handleLogout = async (e) => {
     e.preventDefault();
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("role");
+    dispatch(actions.logout());
   };
 
   return (
@@ -27,7 +25,6 @@ export const TopBar = () => {
         activity="test"
         isAddingModal={true}
       />
-      <SearchBar />
       <IconButton
         colorScheme='blue'
         aria-label='Wyloguj'
@@ -37,3 +34,4 @@ export const TopBar = () => {
     </Flex>
   );
 };
+export default connect(null, null)(TopBar);
