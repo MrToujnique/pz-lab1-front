@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
+import { BrowserRouter } from "react-router-dom";
 import projectListReducer, {
   createProjectReducer,
   updateProjectReducer,
@@ -15,6 +16,7 @@ import projectListReducer, {
   updateProjectDesReducer,
   updateProjectNameReducer,
 } from "./store/reducers/projectsList";
+import authReducer from "./store/reducers/auth";
 import { addTaskReducer, getTasksReducer } from "./store/reducers/taskReducers";
 
 const composeEnhancers =
@@ -23,6 +25,7 @@ const composeEnhancers =
     : compose;
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   projectList: projectListReducer,
   createProject: createProjectReducer,
   updateProject: updateProjectReducer,
@@ -39,7 +42,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ChakraProvider>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ChakraProvider>
     </Provider>
   </React.StrictMode>,
