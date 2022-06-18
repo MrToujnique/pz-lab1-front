@@ -7,7 +7,16 @@ import InfoModal from "../../InfoModal/InfoModal";
 import { useEffect } from "react";
 
 export const RowItem = (props) => {
-  const { lp, id, name, description, createDate, thesisDefence } = props;
+  const {
+    lp,
+    id,
+    name,
+    description,
+    createDate,
+    thesisDefence,
+    userEmail,
+    ownerEmail,
+  } = props;
 
   return (
     <Tr>
@@ -19,14 +28,21 @@ export const RowItem = (props) => {
       <Td>{thesisDefence}</Td>
       <Td>
         <InfoModal projectId={id} />
-        <ModalLayout
-          projectId={id}
-          projectName={name}
-          description={description}
-          thesisDefence={thesisDefence}
-          isEditingModal={true}
-          title="Edytowanie projektu"/>
-        <DeleteModal projectId={id} title="Usuwanie projektu" />
+        {!userEmail.localeCompare(ownerEmail) ? (
+          <>
+            <ModalLayout
+              projectId={id}
+              projectName={name}
+              description={description}
+              thesisDefence={thesisDefence}
+              isEditingModal={true}
+              title="Edytowanie projektu"
+            />
+            <DeleteModal projectId={id} title="Usuwanie projektu" />
+          </>
+        ) : (
+          <></>
+        )}
       </Td>
     </Tr>
   );

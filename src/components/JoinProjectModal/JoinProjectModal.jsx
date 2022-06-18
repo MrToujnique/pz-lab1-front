@@ -15,12 +15,11 @@ import axios from "./../../axios";
 import { studentEndpoints } from "../../shared/config/endpoints";
 
 const JoinProjectModal = (props) => {
-  const email = localStorage.getItem("email");
-  const token = localStorage.getItem("token");
   const { projectId, projectName, projectOwnerEmail } = props;
   const [id, setId] = useState(0);
   const [name, setName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -36,10 +35,14 @@ const JoinProjectModal = (props) => {
     axios
       .put(`${studentEndpoints.joinStudentToProject}${id}`)
       .then((res) => {
-        console.log(res);
+        setTimeout(() => {
+          setErrMsg("");
+          onClose();
+          window.location.reload(false);
+        }, 500);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setErrMsg("Nie powiodło się");
       });
   };
 
@@ -60,6 +63,7 @@ const JoinProjectModal = (props) => {
             Czy chcesz dołączyć do tego projektu?
           </ModalHeader>
           <ModalCloseButton />
+          <Text>{errMsg}</Text>
           <ModalBody>
             <Flex direction="column" alignItems="center">
               <Text>Dane projektu:</Text>
