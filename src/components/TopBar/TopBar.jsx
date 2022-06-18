@@ -1,5 +1,5 @@
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
-import { Flex, IconButton } from "@chakra-ui/react";
+import { Button, Flex, IconButton } from "@chakra-ui/react";
 import React from "react";
 import ModalLayout from "../ModalLayout";
 import { connect, useDispatch } from "react-redux";
@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 
 const TopBar = () => {
   const [isStudent, setIsStudent] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -39,11 +40,20 @@ const TopBar = () => {
   return (
     <Flex
       direction="row"
-      justify="space-between"
+      justify="space-around"
       width="100%"
       bgColor="#F9F9F9"
       padding="20px"
     >
+      <Button background="yellow.400" onClick={() => navigate("/")}>
+        Twoje projekty
+      </Button>
+      <Button
+        background="yellow.400"
+        onClick={() => navigate("/wolne-projekty")}
+      >
+        Wolne projekty
+      </Button>
       {isStudent ? (
         <></>
       ) : (

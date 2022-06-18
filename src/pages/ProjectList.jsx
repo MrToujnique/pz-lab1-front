@@ -8,6 +8,7 @@ import {
   Th,
   TableContainer,
   Spinner,
+  Text,
 } from "@chakra-ui/react";
 import { RowItem } from "../components/ProjectsList/RowItem/RowItem";
 import React, { useState, useEffect } from "react";
@@ -55,7 +56,7 @@ const ProjectList = (props) => {
           <Heading textAlign="center">Lista Twoich projektów</Heading>
           {loading ? (
             <Spinner mx="auto" my="auto" />
-          ) : (
+          ) : projectsList.length > 0 ? (
             <TableContainer mx="20px" mt="30px">
               <Table size="sm">
                 <Thead>
@@ -86,6 +87,10 @@ const ProjectList = (props) => {
                 </Tbody>
               </Table>
             </TableContainer>
+          ) : (
+            <Flex marginTop={16} direction="column" align="center">
+              <Text fontSize="2xl">Brak dostępnych projektów</Text>
+            </Flex>
           )}
         </Flex>
       </Box>

@@ -41,6 +41,7 @@ const NewStudentPage = () => {
         ? "STATIONARY"
         : "EXTRAMURAL",
     };
+    console.log("Student data: ", studentData);
     axios
       .post(studentEndpoints.addStudent, studentData)
       .then((res) => {

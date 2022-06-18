@@ -11,7 +11,7 @@ import { Th } from "@chakra-ui/react";
 import { Tbody } from "@chakra-ui/react";
 import { RowItem } from "./../ProjectsList/RowItem/RowItem";
 import AvailableProjectItem from "./AvailableProjectItem";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 
 const ProjectsTable = (props) => {
   const { loading, setLoading, projectsList, setProjectsList, formatDate } =
@@ -24,7 +24,7 @@ const ProjectsTable = (props) => {
           <Heading textAlign="center">Lista wolnych projektów</Heading>
           {loading ? (
             <Spinner mx="auto" my="auto" />
-          ) : (
+          ) : projectsList.length > 0 ? (
             <TableContainer mx="20px" mt="30px">
               <Table size="sm">
                 <Thead>
@@ -55,6 +55,10 @@ const ProjectsTable = (props) => {
                 </Tbody>
               </Table>
             </TableContainer>
+          ) : (
+            <Flex marginTop={16} direction="column" align="center">
+              <Text fontSize="2xl">Brak dostępnych projektów</Text>
+            </Flex>
           )}
         </Flex>
       </Box>
