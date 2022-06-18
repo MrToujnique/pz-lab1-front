@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
-import { TopBar } from "./../TopBar/TopBar";
+import TopBar from "./../TopBar/TopBar";
 import { Spinner } from "@chakra-ui/react";
 import { TableContainer } from "@chakra-ui/react";
 import { Table } from "@chakra-ui/react";
@@ -11,6 +11,7 @@ import { Th } from "@chakra-ui/react";
 import { Tbody } from "@chakra-ui/react";
 import { RowItem } from "./../ProjectsList/RowItem/RowItem";
 import AvailableProjectItem from "./AvailableProjectItem";
+import { Heading } from "@chakra-ui/react";
 
 const ProjectsTable = (props) => {
   const { loading, setLoading, projectsList, setProjectsList, formatDate } =
@@ -19,7 +20,8 @@ const ProjectsTable = (props) => {
     <>
       <Box>
         <Flex direction="column" width="100%" left="0px" top="0px">
-          <TopBar isStudentMode />
+          <TopBar />
+          <Heading textAlign="center">Lista wolnych projektów</Heading>
           {loading ? (
             <Spinner mx="auto" my="auto" />
           ) : (
@@ -39,16 +41,6 @@ const ProjectsTable = (props) => {
                 </Thead>
                 <Tbody>
                   {projectsList.map((item, key) => (
-                    // <RowItem
-                    //   key={item.projectId}
-                    //   lp={key}
-                    //   id={item.projectId}
-                    //   name={item.name}
-                    //   description={item.description}
-                    //   createDate={formatDate(item.dataAndTimeOfCreation)}
-                    //   thesisDefence={formatDate(item.dateOfDelivery)}
-                    // />
-                    //Tutaj AvailableProjectItem
                     <AvailableProjectItem
                       key={item.projectId}
                       lp={key}

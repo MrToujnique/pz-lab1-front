@@ -8,6 +8,7 @@ export const authEndpoints = {
 
 export const projectEndpoints = {
   getProjectsList: API_URL + "/project/list",
+  getProject: API_URL + "/project/",
   addProject: API_URL + "/project",
   updateProjectStatus: API_URL + "/project/status",
   updateProjectName: API_URL + "/project/name",

@@ -40,7 +40,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTasks } from "./../../store/actions/taskActions";
 import { addTask } from "./../../store/actions/taskActions";
 import axios from "./../../axios";
-import { taskEndpoints } from "./../../shared/config/endpoints";
+import {
+  projectEndpoints,
+  taskEndpoints,
+} from "./../../shared/config/endpoints";
 
 const InfoModal = (props) => {
   const email = localStorage.getItem("email");
@@ -51,6 +54,7 @@ const InfoModal = (props) => {
   const [taskList, setTaskList] = useState([]);
   const [paginationData, setPaginationData] = useState({});
   const [page, setPage] = useState(0);
+  const [projectOwnerEmail, setProjectOwnerEmail] = useState("");
   const dispatch = useDispatch();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -78,7 +82,15 @@ const InfoModal = (props) => {
         .then((res) => {
           setTaskList(res.data.content);
           setPaginationData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
+
+      axios
+        .get(`${projectEndpoints.getProject}${projectId}`)
+        .then((res) => setProjectOwnerEmail(res.data.projectOwnerEmail))
+        .catch((err) => console.log(err));
 
       console.log("taskList w pierwszym: ", taskList);
       console.log("Dane o paginacji: ", paginationData);
@@ -148,7 +160,7 @@ const InfoModal = (props) => {
           <ModalBody>
             <Flex direction="column">
               {/* {user.role === "ADMIN" && ( */}
-              <>
+              {!email.localeCompare(projectOwnerEmail) ? (
                 <form onSubmit={addTaskHandler}>
                   <Input
                     type="text"
@@ -181,7 +193,9 @@ const InfoModal = (props) => {
                   />
                   <Button type="submit">Dodaj zadanie</Button>
                 </form>
-              </>
+              ) : (
+                <></>
+              )}
               {/* )} */}
               <br />
               {taskList !== [] ? (
@@ -194,8 +208,6 @@ const InfoModal = (props) => {
                         <Th>NAZWA</Th>
                         <Th>OPIS</Th>
                         <Th>UTWORZONE</Th>
-                        {/* {user.role === "ADMIN" && } */}
-                        <Th>EDYCJA</Th>
                       </Tr>
                     </Thead>
                     <Tbody>
