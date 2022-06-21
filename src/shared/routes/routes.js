@@ -27,7 +27,7 @@ const routes = () => [
   },
   {
     path: "/reset-hasla/:token",
-    element: token ? <ResetPassword /> : <Navigate to="/logowanie" />,
+    element: !token ? <ResetPassword /> : <Navigate to="/logowanie" />,
   },
   {
     path: "/kontener",

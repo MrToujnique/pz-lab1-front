@@ -16,6 +16,7 @@ export const RowItem = (props) => {
     thesisDefence,
     userEmail,
     ownerEmail,
+    isAdmin,
   } = props;
 
   return (
@@ -28,7 +29,7 @@ export const RowItem = (props) => {
       <Td>{thesisDefence}</Td>
       <Td>
         <InfoModal projectId={id} />
-        {!userEmail.localeCompare(ownerEmail) ? (
+        {!userEmail.localeCompare(ownerEmail) || isAdmin ? (
           <>
             <ModalLayout
               projectId={id}

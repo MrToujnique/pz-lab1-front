@@ -28,6 +28,8 @@ const ProjectList = (props) => {
   const [projectsList, setProjectsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const isAdmin = !localStorage.getItem("role").localeCompare("ADMIN");
+
   useEffect(() => {
     axios
       .get(projectEndpoints.getProjectsList, {
@@ -53,7 +55,11 @@ const ProjectList = (props) => {
       <Box>
         <Flex direction="column" width="100%" left="0px" top="0px">
           <TopBar />
-          <Heading textAlign="center">Lista Twoich projektów</Heading>
+          {isAdmin ? (
+            <Heading textAlign="center">Lista projektów</Heading>
+          ) : (
+            <Heading textAlign="center">Lista Twoich projektów</Heading>
+          )}
           {loading ? (
             <Spinner mx="auto" my="auto" />
           ) : projectsList.length > 0 ? (
@@ -74,7 +80,7 @@ const ProjectList = (props) => {
                   {projectsList.map((item, key) => (
                     <RowItem
                       key={item.projectId}
-                      lp={key}
+                      lp={key + 1}
                       id={item.projectId}
                       name={item.name}
                       description={item.description}
@@ -82,6 +88,7 @@ const ProjectList = (props) => {
                       thesisDefence={formatDate(item.dateOfDelivery)}
                       userEmail={userEmail}
                       ownerEmail={item.projectOwnerEmail}
+                      isAdmin={isAdmin}
                     />
                   ))}
                 </Tbody>

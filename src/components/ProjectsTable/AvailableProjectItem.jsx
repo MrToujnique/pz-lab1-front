@@ -12,6 +12,7 @@ const AvailableProjectItem = (props) => {
     thesisDefence,
     projectOwnerEmail,
   } = props;
+
   return (
     <>
       <Tr>
