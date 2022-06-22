@@ -42,11 +42,9 @@ const RegisterPage = () => {
           password,
         })
         .then((res) => {
-          console.log("Jestem po rejestracji");
           axios
             .post(authEndpoints.login, { email, password })
             .then((res) => {
-              console.log("Teraz po logowaniu");
               localStorage.setItem("email", res.data.email);
               localStorage.setItem("token", res.data.jwToken);
               localStorage.setItem("role", res.data.role);

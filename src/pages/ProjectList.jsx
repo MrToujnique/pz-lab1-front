@@ -20,11 +20,6 @@ import { Heading } from "@chakra-ui/react";
 const ProjectList = (props) => {
   const userEmail = localStorage.getItem("email");
 
-  const formatDate = (date) => {
-    const dateObject = new Date(date);
-    return dateObject.toISOString().substring(0, 10);
-  };
-
   const [projectsList, setProjectsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -81,14 +76,9 @@ const ProjectList = (props) => {
                     <RowItem
                       key={item.projectId}
                       lp={key + 1}
-                      id={item.projectId}
-                      name={item.name}
-                      description={item.description}
-                      createDate={formatDate(item.dataAndTimeOfCreation)}
-                      thesisDefence={formatDate(item.dateOfDelivery)}
-                      userEmail={userEmail}
-                      ownerEmail={item.projectOwnerEmail}
                       isAdmin={isAdmin}
+                      projectData={item}
+                      userEmail={userEmail}
                     />
                   ))}
                 </Tbody>

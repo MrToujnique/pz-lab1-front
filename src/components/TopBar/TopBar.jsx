@@ -35,6 +35,7 @@ const TopBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     dispatch(actions.logout());
+    navigate("/logowanie");
   };
 
   return (
@@ -68,9 +69,7 @@ const TopBar = () => {
         aria-label="Wyloguj"
         onClick={handleLogout}
         icon={<CloseIcon />}
-      >
-        <Navigate to="/logowanie" />
-      </IconButton>
+      ></IconButton>
     </Flex>
   );
 };

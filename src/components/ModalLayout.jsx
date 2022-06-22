@@ -31,19 +31,25 @@ import { projectStatus } from "../shared/config/statusTypes";
 import { projectAccess } from "../shared/config/accessTypes";
 
 const ModalLayout = (props) => {
+  const { title, projectData, isAddingModal, isEditingModal } = props;
   const {
-    title,
     projectId,
-    projectName,
+    name,
     description,
-    thesisDefence,
-    isAddingModal,
-    isEditingModal,
-  } = props;
+    dataAndTimeOfCreation,
+    access,
+    status,
+    dataAndTimeOfUpdate,
+    dateOfDelivery,
+    projectOwnerEmail,
+    tasksIds,
+    studentsEmails,
+  } = projectData;
 
   const initialDate = new Date();
-  const today = initialDate.toISOString().substring(0, 10);
-  const dateOfThesisDefence = new Date(thesisDefence);
+  const dateTimeToday = initialDate.toISOString();
+  const today = dateTimeToday.substring(0, 10);
+  const dateOfThesisDefence = new Date(dateOfDelivery);
   // let dd = String(initialDate.getDate()).padStart(2, "0");
   // let mm = String(initialDate.getMonth() + 1).padStart(2, "0");
   // let yyyy = initialDate.getFullYear();
@@ -65,15 +71,15 @@ const ModalLayout = (props) => {
   const [accessState, setAccessState] = useState("Otwarty");
 
   useEffect(() => {
-    console.log("data obrony: ", thesisDefence);
+    console.log("data obrony: ", dateOfDelivery);
     console.log("dateState: ", dateState);
     if (isEditingModal) {
-      setProjectNameState(projectName);
+      setProjectNameState(name);
       setDescriptionState(description);
     }
-    if (thesisDefence >= today) {
+    if (dateOfDelivery >= today) {
       setDateState(dateOfThesisDefence);
-    } else if (thesisDefence < today) {
+    } else if (dateOfDelivery < today) {
       setDateState(initialDate);
     }
   }, []);
@@ -110,20 +116,21 @@ const ModalLayout = (props) => {
     e.preventDefault();
     dispatch(
       updateProject({
-        email: email,
         projectId: projectId,
+        name: projectNameState,
+        description: descriptionState,
+        projectOwnerEmail: email,
         status: !statusState.localeCompare("Trwający")
           ? "CONTINUES"
           : !statusState.localeCompare("Zamknięty")
           ? "CLOSE"
           : null,
-        name: projectNameState,
-        description: descriptionState,
         access: !accessState.localeCompare("Otwarty")
           ? "OPEN"
           : !accessState.localeCompare("Zamknięty")
           ? "CLOSE"
           : null,
+        dataAndTimeOfUpdate: dateTimeToday,
       })
     );
     onClose();
