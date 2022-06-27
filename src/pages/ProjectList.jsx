@@ -17,7 +17,7 @@ import { projectEndpoints } from "../shared/config/endpoints";
 import axios from "../axios";
 import { Heading } from "@chakra-ui/react";
 
-const ProjectList = (props) => {
+const ProjectList = () => {
   const userEmail = localStorage.getItem("email");
 
   const [projectsList, setProjectsList] = useState([]);
@@ -26,6 +26,7 @@ const ProjectList = (props) => {
   const isAdmin = !localStorage.getItem("role").localeCompare("ADMIN");
 
   useEffect(() => {
+    console.log("Wykonuję się w useEffect");
     axios
       .get(projectEndpoints.getProjectsList, {
         params: {
@@ -36,7 +37,7 @@ const ProjectList = (props) => {
       })
       .then((resp) => {
         setLoading(false);
-        console.log(resp.data.content);
+        console.log("Content:", resp.data.content);
         setProjectsList(resp.data.content);
       })
       .catch((err) => {

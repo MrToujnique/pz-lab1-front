@@ -32,6 +32,7 @@ import { projectAccess } from "../shared/config/accessTypes";
 
 const ModalLayout = (props) => {
   const { title, projectData, isAddingModal, isEditingModal } = props;
+  console.log("props: ", props);
   const {
     projectId,
     name,
