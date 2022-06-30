@@ -26,7 +26,6 @@ const ProjectList = () => {
   const isAdmin = !localStorage.getItem("role").localeCompare("ADMIN");
 
   useEffect(() => {
-    console.log("Wykonuję się w useEffect");
     axios
       .get(projectEndpoints.getProjectsList, {
         params: {
@@ -58,7 +57,7 @@ const ProjectList = () => {
           )}
           {loading ? (
             <Spinner mx="auto" my="auto" />
-          ) : projectsList.length > 0 ? (
+          ) : (
             <TableContainer mx="20px" mt="30px">
               <Table size="sm">
                 <Thead>
@@ -85,10 +84,6 @@ const ProjectList = () => {
                 </Tbody>
               </Table>
             </TableContainer>
-          ) : (
-            <Flex marginTop={16} direction="column" align="center">
-              <Text fontSize="2xl">Brak dostępnych projektów</Text>
-            </Flex>
           )}
         </Flex>
       </Box>

@@ -8,7 +8,7 @@ export const createProject = (project) => async (dispatch) => {
   try {
     const { data } = await axios
       .post(projectEndpoints.addProject, project)
-      .then((res) => console.log(res.data));
+      .then(() => window.location.reload(false));
     dispatch({
       type: actionTypes.CREATE_PROJECT_SUCCESS,
       payload: data.project,

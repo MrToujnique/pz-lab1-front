@@ -55,7 +55,7 @@ const ChangePasswordPage = () => {
           localStorage.clear();
           setTimeout(() => {
             navigate("/logowanie");
-          }, 2000);
+          }, 1000);
         })
         .catch((err) => {
           console.log(err);
@@ -65,7 +65,7 @@ const ChangePasswordPage = () => {
           );
           setTimeout(() => {
             setErrMsg("");
-          }, 6000);
+          }, 5000);
         });
     } else {
       setSuccess(false);

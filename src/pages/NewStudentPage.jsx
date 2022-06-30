@@ -21,7 +21,7 @@ const NewStudentPage = () => {
   const [indexNumber, setIndexNumber] = useState("");
   const [studyType, setStudyType] = useState("Stacjonarne");
   const successfulSubmitText =
-    "Pomyślnie utworzono studenta, zostaniesz przekierowany za 5 sekund...";
+    "Pomyślnie utworzono studenta, zostaniesz przekierowany...";
 
   const getEmail = localStorage.getItem("email");
   const [success, setSuccess] = useState(false);
@@ -53,9 +53,8 @@ const NewStudentPage = () => {
         setStudyType("Stacjonarne");
         console.log(res.data);
         setSuccess(true);
-        setTimeout(() => {
-          navigate("/");
-        }, 5000);
+        navigate("/");
+        window.location.reload(false);
       })
       .catch((err) => {
         console.log("Błąd w dodawaniu studenta, błąd: ", err);

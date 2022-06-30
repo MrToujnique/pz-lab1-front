@@ -14,13 +14,60 @@ import AvailableProjectsPage from "./../../pages/AvailableProjectsPage";
 
 const token = localStorage.getItem("token");
 
+// const routes = () => [
+//   { path: "/logowanie", element: <LoginPage /> },
+//   {
+//     path: "/rejestracja",
+//     element: <RegisterPage />,
+//   },
+//   {
+//     path: "/przypomnienie-hasla",
+//     element: <RemindPassword />,
+//   },
+//   {
+//     path: "/reset-hasla/:token",
+//     element: <ResetPassword />,
+//   },
+//   {
+//     path: "/kontener",
+//     element: <Items />,
+//   },
+//   {
+//     path: "/nowy-student",
+//     element: <NewStudentPage />,
+//   },
+//   {
+//     path: "/uzytkownicy",
+//     element: <PeopleManager />,
+//   },
+//   {
+//     path: "/usuwanie-konta",
+//     element: <DeleteAccountPage />,
+//   },
+//   {
+//     path: "/zmiana-hasla",
+//     element: <ChangePasswordPage />,
+//   },
+//   {
+//     path: "/studenci",
+//     element: <StudentManager />,
+//   },
+//   {
+//     path: "/wolne-projekty",
+//     element: <AvailableProjectsPage />,
+//   },
+//   {
+//     path: "/",
+//     element: <ProjectList />,
+//   },
+// ];
+
 const routes = () => [
   { path: "/logowanie", element: !token ? <LoginPage /> : <Navigate to="/" /> },
   {
     path: "/rejestracja",
     element: !token ? <RegisterPage /> : <Navigate to="/" />,
   },
-  { path: "/logowanie", element: !token ? <LoginPage /> : <Navigate to="/" /> },
   {
     path: "/przypomnienie-hasla",
     element: !token ? <RemindPassword /> : <Navigate to="/" />,
@@ -35,7 +82,7 @@ const routes = () => [
   },
   {
     path: "/nowy-student",
-    element: token ? <NewStudentPage /> : <Navigate to="/logowanie" />,
+    element: <NewStudentPage />,
   },
   {
     path: "/uzytkownicy",

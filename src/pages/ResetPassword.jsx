@@ -39,7 +39,7 @@ const ResetPassword = () => {
           localStorage.removeItem("user");
           setTimeout(() => {
             navigate("/");
-          }, 3000);
+          }, 500);
         })
         .catch((err) =>
           setErrMsg(`Niepoprawny token, kod błędu: ${err.response.status}`)

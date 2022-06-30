@@ -6,7 +6,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure} from "@chakra-ui/react";
+  useDisclosure,
+} from "@chakra-ui/react";
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
@@ -22,14 +23,16 @@ const DeleteModal = (props) => {
 
   const deleteProjectHandler = (e) => {
     e.preventDefault();
-    axios.delete(projectEndpoints.deleteProject, {data:{
-          email: email,
+    axios
+      .delete(projectEndpoints.deleteProject, {
+        data: {
           projectId: projectId,
-        }})
-        .then((res) => {
-          onClose();
-          window.location.reload(false);
-        });
+        },
+      })
+      .then((res) => {
+        onClose();
+        window.location.reload(false);
+      });
   };
 
   return (

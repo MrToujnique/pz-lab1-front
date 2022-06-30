@@ -1,16 +1,14 @@
-import { AddIcon, CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 import { Button, Flex, IconButton } from "@chakra-ui/react";
 import React from "react";
-import ModalLayout from "../ModalLayout";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actions from "../../store/actions/index";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "./../../axios";
-import {
-  personEndpoints,
-  studentEndpoints,
-} from "./../../shared/config/endpoints";
+import { studentEndpoints } from "./../../shared/config/endpoints";
 import { useState, useEffect } from "react";
+import { Text } from "@chakra-ui/react";
+import AddProjectModal from "../AddProjectModal/AddProjectModal";
 
 const TopBar = () => {
   const [isStudent, setIsStudent] = useState(false);
@@ -35,7 +33,8 @@ const TopBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     dispatch(actions.logout());
-    navigate("/logowanie");
+    window.location.reload(false);
+    //navigate("/logowanie");
   };
 
   return (
@@ -55,15 +54,7 @@ const TopBar = () => {
       >
         Wolne projekty
       </Button>
-      {isStudent ? (
-        <></>
-      ) : (
-        <ModalLayout
-          title="Dodawanie projektu"
-          activity="test"
-          isAddingModal={true}
-        />
-      )}
+      {isStudent ? <></> : <AddProjectModal />}
       <IconButton
         colorScheme="blue"
         aria-label="Wyloguj"
@@ -73,4 +64,4 @@ const TopBar = () => {
     </Flex>
   );
 };
-export default connect(null, null)(TopBar);
+export default TopBar;

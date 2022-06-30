@@ -20,7 +20,7 @@ const RegisterPage = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const successfulSubmitText =
-    "Pomyślnie założono konto, zostaniesz przekierowany do rejestracji studenta za 5 sekund...";
+    "Pomyślnie założono konto, zostaniesz przekierowany do rejestracji studenta";
 
   useEffect(() => {
     if (localStorage.getItem("user") !== null) {
@@ -49,9 +49,8 @@ const RegisterPage = () => {
               localStorage.setItem("token", res.data.jwToken);
               localStorage.setItem("role", res.data.role);
               setSuccess(true);
-              setTimeout(() => {
-                navigate("/nowyStudent");
-              }, 5000);
+              navigate("/nowy-student");
+              console.log("Test");
             })
             .catch((err) => {
               console.log("Błąd logowania, błąd: ", err);

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import routes from "../../shared/routes/routes";
 import * as actionTypes from "./actionTypes";
 
 export const authCheckState = () => {
@@ -42,3 +44,9 @@ export const authSuccess = (idToken, checkingState) => {
     checking: checkingState,
   };
 };
+
+// export const checkToken = () => {
+//   if (!localStorage.hasOwnProperty("token")) {
+//     history.pu("/logowanie");
+//   }
+// };
