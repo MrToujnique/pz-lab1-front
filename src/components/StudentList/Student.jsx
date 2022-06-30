@@ -6,12 +6,12 @@ import PermissionModal from "./../PermissionModal/PermissionModal";
 import StudyTypeModal from "./../StudyTypeModal/StudyTypeModal";
 
 const Student = (props) => {
-  const { email, name, surname, indexNumber, projectIds, studyType } = props;
+  const { email, name, surname, indexNumber, projectsIds, studyType } = props;
   const [separatedProjects, setSeparatedProjects] = useState("");
 
   useEffect(() => {
-    if (projectIds) {
-      setSeparatedProjects(projectIds.join(", "));
+    if (projectsIds) {
+      setSeparatedProjects(projectsIds.join(", "));
     }
   }, []);
 
@@ -22,22 +22,10 @@ const Student = (props) => {
         <Td>{name}</Td>
         <Td>{surname}</Td>
         <Td>{indexNumber}</Td>
-        <Td>{projectIds}</Td>
+        <Td>{separatedProjects}</Td>
         <Td>
           {!studyType.localeCompare("STATIONARY") ? "Stacjonarne" : "Zaoczne"}
         </Td>
-        {/* <StudyTypeModal indexNumber={indexNumber} /> */}
-        {/* <DeleteUserModal /> */}
-        {/* <ModalLayout
-          projectId={id}
-          projectName={name}
-          description={description}
-          thesisDefence={thesisDefence}
-          isEditingModal={true}
-          title="Edytowanie projektu"
-        />
-        <DeleteModal projectId={id} title="Usuwanie projektu" /> */}
-        {/* </Td> */}
       </Tr>
     </>
   );

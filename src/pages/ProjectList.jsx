@@ -17,13 +17,8 @@ import { projectEndpoints } from "../shared/config/endpoints";
 import axios from "../axios";
 import { Heading } from "@chakra-ui/react";
 
-const ProjectList = (props) => {
+const ProjectList = () => {
   const userEmail = localStorage.getItem("email");
-
-  const formatDate = (date) => {
-    const dateObject = new Date(date);
-    return dateObject.toISOString().substring(0, 10);
-  };
 
   const [projectsList, setProjectsList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -41,7 +36,7 @@ const ProjectList = (props) => {
       })
       .then((resp) => {
         setLoading(false);
-        console.log(resp.data.content);
+        console.log("Content:", resp.data.content);
         setProjectsList(resp.data.content);
       })
       .catch((err) => {
@@ -62,7 +57,7 @@ const ProjectList = (props) => {
           )}
           {loading ? (
             <Spinner mx="auto" my="auto" />
-          ) : projectsList.length > 0 ? (
+          ) : (
             <TableContainer mx="20px" mt="30px">
               <Table size="sm">
                 <Thead>
@@ -81,23 +76,14 @@ const ProjectList = (props) => {
                     <RowItem
                       key={item.projectId}
                       lp={key + 1}
-                      id={item.projectId}
-                      name={item.name}
-                      description={item.description}
-                      createDate={formatDate(item.dataAndTimeOfCreation)}
-                      thesisDefence={formatDate(item.dateOfDelivery)}
-                      userEmail={userEmail}
-                      ownerEmail={item.projectOwnerEmail}
                       isAdmin={isAdmin}
+                      projectData={item}
+                      userEmail={userEmail}
                     />
                   ))}
                 </Tbody>
               </Table>
             </TableContainer>
-          ) : (
-            <Flex marginTop={16} direction="column" align="center">
-              <Text fontSize="2xl">Brak dostępnych projektów</Text>
-            </Flex>
           )}
         </Flex>
       </Box>

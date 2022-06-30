@@ -114,7 +114,26 @@ const InfoModal = (props) => {
         projectIds: projectId,
         dateTimeAdded: new Date().toISOString(),
       };
-      dispatch(addTask(taskDetails));
+      axios
+        .post(taskEndpoints.addTask, taskDetails)
+        .then(() => {
+          axios
+            .get(`${taskEndpoints.getTasksByProject}${projectId}`, {
+              params: {
+                page: page,
+                size: 4,
+                sort: "asc",
+              },
+            })
+            .then((res) => {
+              setTaskList(res.data.content);
+              setPaginationData(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => console.log(err));
 
       //setTaskList([...taskList, taskDetails]);
     }

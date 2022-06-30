@@ -57,7 +57,7 @@ const DeleteAccountPage = () => {
           localStorage.clear();
           setTimeout(() => {
             navigate("/logowanie");
-          }, 2000);
+          }, 500);
         })
         .catch((err) => {
           console.log(err);
@@ -65,7 +65,7 @@ const DeleteAccountPage = () => {
           setErrMsg("Usuwanie nie powiodło się, sprawdź poprawność danych.");
           setTimeout(() => {
             setErrMsg("");
-          }, 6000);
+          }, 5000);
         });
     } else {
       setSuccess(false);

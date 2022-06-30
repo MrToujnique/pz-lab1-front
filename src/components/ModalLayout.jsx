@@ -29,21 +29,30 @@ import { updatePersonEmail } from "./../store/actions/personActions";
 import { updateProject } from "./../store/actions/projectActions";
 import { projectStatus } from "../shared/config/statusTypes";
 import { projectAccess } from "../shared/config/accessTypes";
+import axios from "./../axios";
+import { projectEndpoints } from "../shared/config/endpoints";
 
 const ModalLayout = (props) => {
+  const { title, projectData, isAddingModal, isEditingModal } = props;
+  console.log("props: ", props);
   const {
-    title,
     projectId,
-    projectName,
+    name,
     description,
-    thesisDefence,
-    isAddingModal,
-    isEditingModal,
-  } = props;
+    dataAndTimeOfCreation,
+    access,
+    status,
+    dataAndTimeOfUpdate,
+    dateOfDelivery,
+    projectOwnerEmail,
+    tasksIds,
+    studentsEmails,
+  } = projectData;
 
   const initialDate = new Date();
-  const today = initialDate.toISOString().substring(0, 10);
-  const dateOfThesisDefence = new Date(thesisDefence);
+  const dateTimeToday = initialDate.toISOString();
+  const today = dateTimeToday.substring(0, 10);
+  const dateOfThesisDefence = new Date(dateOfDelivery);
   // let dd = String(initialDate.getDate()).padStart(2, "0");
   // let mm = String(initialDate.getMonth() + 1).padStart(2, "0");
   // let yyyy = initialDate.getFullYear();
@@ -63,20 +72,38 @@ const ModalLayout = (props) => {
   const [dateState, setDateState] = useState(initialDate);
   const [statusState, setStatusState] = useState("Trwający");
   const [accessState, setAccessState] = useState("Otwarty");
+  const [actualProject, setActualProject] = useState();
 
   useEffect(() => {
-    console.log("data obrony: ", thesisDefence);
+    console.log("data obrony: ", dateOfDelivery);
     console.log("dateState: ", dateState);
-    if (isEditingModal) {
-      setProjectNameState(projectName);
-      setDescriptionState(description);
-    }
-    if (thesisDefence >= today) {
+    setStatusState();
+    if (dateOfDelivery >= today) {
       setDateState(dateOfThesisDefence);
-    } else if (thesisDefence < today) {
+    } else if (dateOfDelivery < today) {
       setDateState(initialDate);
     }
-  }, []);
+    if (isOpen) {
+      axios
+        .get(`${projectEndpoints.getProject}${projectId}`)
+        .then((res) => {
+          console.log(res.data.status);
+          console.log(res.data.access);
+          setActualProject(res.data);
+          setProjectNameState(name);
+          setDescriptionState(description);
+          setStatusState(
+            !res.data.status.localeCompare("CONTINUES")
+              ? "Trwający"
+              : "Zamknięty"
+          );
+          setAccessState(
+            !res.data.access.localeCompare("OPEN") ? "Otwarty" : "Zamknięty"
+          );
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isOpen]);
 
   const createProjectHandler = (e) => {
     console.log("Data dostarczenia: ", dateState);
@@ -108,24 +135,34 @@ const ModalLayout = (props) => {
 
   const editProjectHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      updateProject({
-        email: email,
-        projectId: projectId,
-        status: !statusState.localeCompare("Trwający")
-          ? "CONTINUES"
-          : !statusState.localeCompare("Zamknięty")
-          ? "CLOSE"
-          : null,
-        name: projectNameState,
-        description: descriptionState,
-        access: !accessState.localeCompare("Otwarty")
-          ? "OPEN"
-          : !accessState.localeCompare("Zamknięty")
-          ? "CLOSE"
-          : null,
-      })
-    );
+    const projectDetails = {
+      //to jest dobry obiekt, znajdź i wstaw wszystkie potrzebne dane do tych pól
+      //jak to zrobisz to apka raczej fertig
+      projectId: projectId,
+      name: projectNameState,
+      description: descriptionState,
+      dataAndTimeOfCreation: dateTimeToday,
+      access: !accessState.localeCompare("Otwarty")
+        ? "OPEN"
+        : !accessState.localeCompare("Zamknięty")
+        ? "CLOSE"
+        : null,
+      status: !statusState.localeCompare("Trwający")
+        ? "CONTINUES"
+        : !statusState.localeCompare("Zamknięty")
+        ? "CLOSE"
+        : null,
+      dataAndTimeOfUpdate: dateTimeToday,
+      dateOfDelivery: dateState,
+      projectOwnerEmail: actualProject.projectOwnerEmail,
+      tasksIds: actualProject.tasksIds,
+      studentsEmails: actualProject.studentsEmails,
+    };
+    //dispatch(updateProject(projectDetails));
+    axios
+      .put(projectEndpoints.putProject, projectDetails)
+      .then(() => window.location.reload(false))
+      .catch((err) => console.log(err));
     onClose();
   };
 

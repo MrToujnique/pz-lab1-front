@@ -72,7 +72,7 @@ const StudentList = () => {
                   name={item.name}
                   surname={item.surname}
                   indexNumber={item.index_number}
-                  projectIds={item.projectIds}
+                  projectsIds={item.projectsIds}
                   studyType={item.studyType}
                 />
               ))}

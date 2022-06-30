@@ -12,7 +12,7 @@ const LoginPage = () => {
   const emailRef = useRef();
   const navigate = useNavigate();
   const [successfulSubmitText, setSuccessfulSubmitText] = useState(
-    "Pomyślnie zalogowano, zostaniesz przekierowany na stronę główną za 5 sekund..."
+    "Pomyślnie zalogowano, zostaniesz przekierowany..."
   );
 
   const [email, setEmail] = useState("");
@@ -54,8 +54,9 @@ const LoginPage = () => {
         setTimeout(() => {
           setSuccess(false);
           setSuccessfulSubmitText("");
-          navigate("/");
-        }, 5000);
+          // navigate("/");
+          window.location.reload(false);
+        }, 500);
       })
       .catch((err) => {
         setErrMsg("Nieprawidłowe dane logowania.");
@@ -150,11 +151,6 @@ const LoginPage = () => {
               >
                 Zaloguj się
               </Button>
-              <Flex flexDirection="column" alignItems="flex-end">
-                <CustomLink to="/przypomnienie-hasla" textAlign="right">
-                  Nie pamiętasz hasła?
-                </CustomLink>
-              </Flex>
             </Stack>
           </form>
         </Box>
