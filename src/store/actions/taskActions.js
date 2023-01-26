@@ -48,3 +48,22 @@ export const addTask = (taskData) => async (dispatch) => {
     dispatch({ type: actionTypes.CREATE_TASK_FAIL, payload: message });
   }
 };
+
+export const uploadResult = (resultData) => async (dispatch) => {
+  dispatch({ type: actionTypes.CREATE_RESULT_REQUEST });
+  try {
+    const { data } = await axios
+      .post(taskEndpoints.addTaskResult, resultData)
+      .then((res) => console.log(res.data));
+    dispatch({
+      type: actionTypes.CREATE_RESULT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: actionTypes.CREATE_RESULT_FAIL, payload: message });
+  }
+};

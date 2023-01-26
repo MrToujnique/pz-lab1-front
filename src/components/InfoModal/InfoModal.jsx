@@ -45,9 +45,8 @@ import {
   taskEndpoints,
 } from "./../../shared/config/endpoints";
 
-const InfoModal = (props) => {
+const InfoModal = ({ projectId, projectData }) => {
   const email = localStorage.getItem("email");
-  const { projectId } = props;
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [orderNumber, setOrderNumber] = useState(0);
@@ -236,18 +235,20 @@ const InfoModal = (props) => {
                         // >
                         //   {t.value}
                         // </ListItem>
-
-                        <TaskItem
-                          orderNumber={t.orderNumber}
-                          taskId={t.taskId}
-                          name={t.name}
-                          description={t.description}
-                          dateTimeAdded={t.dateTimeAdded
-                            .replace("T", " ")
-                            .replace("Z", "")
-                            .slice(0, -4)}
-                          deletetask={deletetask}
-                        />
+                        <>
+                          <TaskItem
+                            orderNumber={t.orderNumber}
+                            taskId={t.taskId}
+                            name={t.name}
+                            description={t.description}
+                            dateTimeAdded={t.dateTimeAdded
+                              .replace("T", " ")
+                              .replace("Z", "")
+                              .slice(0, -4)}
+                            deletetask={deletetask}
+                            userEmail={email}
+                          />
+                        </>
                       ))}
                     </Tbody>
                   </Table>

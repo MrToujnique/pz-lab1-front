@@ -1,4 +1,4 @@
-const API_URL = "https://project-menegment-api.herokuapp.com";
+const API_URL = "http://localhost:8080";
 
 export const authEndpoints = {
   register: API_URL + "/person/reg",
@@ -42,4 +42,5 @@ export const studentEndpoints = {
 export const taskEndpoints = {
   getTasksByProject: API_URL + "/task/project/",
   addTask: API_URL + "/task",
+  addTaskResult: API_URL + "/res",
 };

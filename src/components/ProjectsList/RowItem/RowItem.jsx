@@ -33,7 +33,7 @@ export const RowItem = (props) => {
       <Td>{formatDate(dataAndTimeOfCreation)}</Td>
       <Td>{formatDate(dateOfDelivery)}</Td>
       <Td>
-        <InfoModal projectId={projectId} />
+        <InfoModal projectId={projectId} projectData={projectData} />
         {!userEmail.localeCompare(projectOwnerEmail) || isAdmin ? (
           <>
             <ModalLayout

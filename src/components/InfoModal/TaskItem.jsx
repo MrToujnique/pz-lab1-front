@@ -3,16 +3,10 @@ import { Td } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { useEffect } from "react";
 
+import FileUploader from "./../FileUploader/FileUploader";
+
 const TaskItem = (props) => {
-  const {
-    orderNumber,
-    taskId,
-    name,
-    description,
-    dateTimeAdded,
-    deletetask,
-    user,
-  } = props;
+  const { orderNumber, taskId, name, description, dateTimeAdded } = props;
 
   return (
     <Tr>
@@ -21,6 +15,9 @@ const TaskItem = (props) => {
       <Td>{name}</Td>
       <Td>{description}</Td>
       <Td>{dateTimeAdded}</Td>
+      <Td>
+        <FileUploader taskData={props} />
+      </Td>
       {/* <Td>
         <Button className="delete" onClick={(e) => deletetask(e, taskId)}>
           Wykonano
