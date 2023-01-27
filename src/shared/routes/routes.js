@@ -11,6 +11,7 @@ import PeopleManager from "../../pages/PeopleManager";
 import StudentManager from "../../pages/StudentManager";
 import LoginPage from "../../pages/LoginPage";
 import AvailableProjectsPage from "./../../pages/AvailableProjectsPage";
+import ChatPage from "../../pages/ChatPage";
 
 const token = localStorage.getItem("token");
 
@@ -83,6 +84,10 @@ const routes = () => [
   {
     path: "/nowy-student",
     element: <NewStudentPage />,
+  },
+  {
+    path: "/chat",
+    element: <ChatPage />,
   },
   {
     path: "/uzytkownicy",
