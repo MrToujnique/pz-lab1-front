@@ -1,4 +1,4 @@
-import { CloseIcon } from "@chakra-ui/icons";
+import { ChatIcon, CloseIcon } from "@chakra-ui/icons";
 import { Button, Flex, IconButton } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ import AddProjectModal from "../AddProjectModal/AddProjectModal";
 const TopBar = () => {
   const [isStudent, setIsStudent] = useState(false);
   const navigate = useNavigate();
+  const chatUrl = "https://tomatochat.fly.dev/";
 
   useEffect(() => {
     axios
@@ -55,6 +56,12 @@ const TopBar = () => {
         Wolne projekty
       </Button>
       {isStudent ? <></> : <AddProjectModal />}
+      <IconButton
+        colorScheme="green"
+        aria-label="Chat"
+        onClick={() => window.open(chatUrl)}
+        icon={<ChatIcon />}
+      />
       <IconButton
         colorScheme="blue"
         aria-label="Wyloguj"
