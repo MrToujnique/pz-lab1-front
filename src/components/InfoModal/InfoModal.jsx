@@ -226,6 +226,7 @@ const InfoModal = ({ projectId, projectData }) => {
                         <Th>NAZWA</Th>
                         <Th>OPIS</Th>
                         <Th>UTWORZONE</Th>
+                        <Th>ZAŁĄCZNIK</Th>
                       </Tr>
                     </Thead>
                     <Tbody>

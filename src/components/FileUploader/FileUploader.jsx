@@ -4,17 +4,18 @@ import { useDispatch } from "react-redux";
 import { taskEndpoints } from "./../../shared/config/endpoints";
 import * as actionTypes from "../../store/actions/actionTypes";
 import axios from "../../axios";
+import { Button } from "@chakra-ui/react";
 
 const FileUploader = ({ taskData }) => {
   const [resultId, setResultId] = useState();
-  const [progress, setProgress] = useState(0);
   const [imageData, setImageData] = useState();
   const [fileURL, setFileURL] = useState("");
+  const [isFileAttached, setIsFileAttached] = useState(false);
+  const [isFileUploaded, setIsFileUploaded] = useState(false);
+
   const dispatch = useDispatch();
 
   const { userEmail, taskId } = taskData;
-
-  console.log("taskData", taskData);
 
   const formHandler = (e) => {
     e.preventDefault();
@@ -52,47 +53,40 @@ const FileUploader = ({ taskData }) => {
 
   const downloadFile = () => {
     if (resultId && resultId !== 0) {
-      const { data } = axios
+      axios
         .get(`${taskEndpoints.getTaskFile}${resultId}`, {
           responseType: "blob",
         })
         .then((res) => {
-          console.log("res", res);
           const downloadDate = new Date().toString();
-          // setImageData(res.data.Blob);
-          // let buffer = Buffer.from(res.data, "binary");
-
-          // const fileBlob = new Blob([res.data], {
-          //   type: res.headers["content-tpe"],
-          // });
-          console.log("res.data", res.data);
           downloadBlob(res.data, `${downloadDate}.pdf`);
-          const fileURL = URL.createObjectURL(res.data);
-          setFileURL(fileURL);
-          // window.open(fileURL);
         })
         .catch((err) => console.log("err", err));
     }
   };
 
-  useEffect(() => {
-    console.log("imageData", imageData);
-  }, [imageData]);
-
-  const getUploadedFile = (taskId) => {
-    // const taskIdString = taskId.toString();
-    // console.log('first', first)
-    console.log("taskId", taskId);
-    console.log(`${taskEndpoints.getTaskResultsByTask}${taskId}`);
-    const { data } = axios
+  const getUploadedFile = () => {
+    axios
       .get(`${taskEndpoints.getTaskResultsByTask}${taskId}`)
-      .then((res) => setResultId(res.data.content[0].resultId))
+      .then((res) => {
+        setResultId(res.data.content[0].resultId);
+      })
       .catch((err) => console.log(err));
-    console.log("Co podaje GET:", data);
+  };
+
+  const checkUploadedFile = () => {
+    if (resultId && resultId !== 0) {
+      axios
+        .get(`${taskEndpoints.getTaskFile}${resultId}`)
+        .then((res) => {
+          const fileURL = URL.createObjectURL(res.data.Blob);
+          setFileURL(fileURL);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const uploadFiles = (file) => {
-    console.log("file", file);
     const inputData = {
       studentEmail: userEmail,
       taskId,
@@ -104,14 +98,17 @@ const FileUploader = ({ taskData }) => {
     const formData = new FormData();
     formData.append("file", file, file.name);
     formData.append("data", jsonBlob);
-    console.log("formData", formData.values());
     const { data } = axios
       .post(taskEndpoints.addTaskResult, formData, {
         headers: {
           "Content-Type": "application/json",
         },
       })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        if (res.data.fileName) {
+          setIsFileUploaded(true);
+        }
+      })
       .catch((error) => {
         const message =
           error.response && error.response.data.message
@@ -122,27 +119,66 @@ const FileUploader = ({ taskData }) => {
           payload: message,
         });
       });
-    console.log(data);
   };
 
   useEffect(() => {
-    console.log("fileURL", fileURL);
-  }, [fileURL]);
+    getUploadedFile();
+  }, []);
 
   useEffect(() => {
-    getUploadedFile(taskId);
-  }, []);
+    if (resultId) {
+      checkUploadedFile();
+    }
+  }, [resultId]);
 
   return (
     <div className="App">
-      {localStorage.getItem("userType") === "LECTURER" ? (
-        <button onClick={downloadFile}>Pobierz plik</button>
-      ) : (
-        <form onSubmit={formHandler}>
-          <input accept=".pdf" type="file" className="input" />
-          <button type="submit">Załącz</button>
-        </form>
-      )}
+      {localStorage.getItem("userType") === "LECTURER" &&
+        (!resultId ? (
+          <span>Brak rozwiązania</span>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "64px",
+            }}
+          >
+            <Button colorScheme="blue" onClick={downloadFile}>
+              Pobierz plik
+            </Button>
+          </div>
+        ))}
+      {localStorage.getItem("userType") === "STUDENT" &&
+        (isFileUploaded || resultId ? (
+          <span>Rozwiązanie załączone</span>
+        ) : (
+          <form onSubmit={formHandler}>
+            <input
+              accept=".pdf"
+              onChange={() => setIsFileAttached(true)}
+              type="file"
+              className="input"
+            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "64px",
+              }}
+            >
+              <Button
+                colorScheme="green"
+                type="submit"
+                disabled={!isFileAttached}
+              >
+                Załącz
+              </Button>
+            </div>
+          </form>
+        ))}
       <hr />
       {/* <h2>Uploading done {progress}%</h2> */}
       {imageData && imageData}

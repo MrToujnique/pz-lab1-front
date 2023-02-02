@@ -34,7 +34,6 @@ import { projectEndpoints } from "../shared/config/endpoints";
 
 const ModalLayout = (props) => {
   const { title, projectData, isAddingModal, isEditingModal } = props;
-  console.log("props: ", props);
   const {
     projectId,
     name,
@@ -75,8 +74,6 @@ const ModalLayout = (props) => {
   const [actualProject, setActualProject] = useState();
 
   useEffect(() => {
-    console.log("data obrony: ", dateOfDelivery);
-    console.log("dateState: ", dateState);
     setStatusState();
     if (dateOfDelivery >= today) {
       setDateState(dateOfThesisDefence);
@@ -87,8 +84,6 @@ const ModalLayout = (props) => {
       axios
         .get(`${projectEndpoints.getProject}${projectId}`)
         .then((res) => {
-          console.log(res.data.status);
-          console.log(res.data.access);
           setActualProject(res.data);
           setProjectNameState(name);
           setDescriptionState(description);
@@ -106,7 +101,6 @@ const ModalLayout = (props) => {
   }, [isOpen]);
 
   const createProjectHandler = (e) => {
-    console.log("Data dostarczenia: ", dateState);
     e.preventDefault();
     dispatch(
       createProject({

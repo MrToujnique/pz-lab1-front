@@ -45,7 +45,6 @@ const AddProjectModal = () => {
   const [accessState, setAccessState] = useState("Otwarty");
 
   const createProjectHandler = (e) => {
-    console.log("Data dostarczenia: ", dateState);
     e.preventDefault();
     dispatch(
       createProject({
