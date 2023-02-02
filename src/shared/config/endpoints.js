@@ -43,4 +43,6 @@ export const taskEndpoints = {
   getTasksByProject: API_URL + "/task/project/",
   addTask: API_URL + "/task",
   addTaskResult: API_URL + "/res",
+  getTaskFile: API_URL + "/res/file/",
+  getTaskResultsByTask: API_URL + "/res/task/",
 };

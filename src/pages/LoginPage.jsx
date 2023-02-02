@@ -6,7 +6,10 @@ import { authEndpoints } from "../shared/config/endpoints";
 import { Heading, Box, Stack, InputGroup, Flex } from "@chakra-ui/react";
 import CustomLink from "../components/CustomLink";
 import { useNavigate } from "react-router-dom";
-import { personEndpoints } from "./../shared/config/endpoints";
+import {
+  personEndpoints,
+  studentEndpoints,
+} from "./../shared/config/endpoints";
 
 const LoginPage = () => {
   const emailRef = useRef();
@@ -51,6 +54,16 @@ const LoginPage = () => {
         setPassword("");
         setErrMsg("");
         setSuccess(true);
+        axios
+          .get(studentEndpoints.getStudentByEmail)
+          .then((resp) => {
+            if (resp.status === 200) {
+              localStorage.setItem("userType", "STUDENT");
+            }
+          })
+          .catch(() => {
+            localStorage.setItem("userType", "LECTURER");
+          });
         setTimeout(() => {
           setSuccess(false);
           setSuccessfulSubmitText("");
@@ -69,6 +82,7 @@ const LoginPage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("role");
+    localStorage.removeItem("userType");
     setSuccess(false);
   };
 
